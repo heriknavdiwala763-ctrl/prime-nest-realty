@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Properties | PrimeNest Realty</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body class="properties-page">
+
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            PrimeNest<span> Realty</span>
+        </div>
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="properties.html" class="active">
+                Properties
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+            <button type="button" class="wishlist-nav-btn" style="background: transparent; border: none; font-size: 14px; color: #555; cursor: pointer; display: flex; align-items: center; gap: 6px; padding: 0 4px; transition: color 0.3s;" title="View Wishlist">
+                ❤️ Wishlist <span class="wishlist-badge" style="background: #ef4444; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 10px;">0</span>
+            </button>
+
+        </nav>
+
+        <a href="contact.html" class="nav-btn">
+            Contact Agent
+        </a>
+
+    </header>
+
+
+
+    <!-- PAGE HERO -->
+
+    <section class="properties-hero">
+
+        <div>
+
+            <p>
+                PRIME NEST REALTY
+            </p>
+
+            <h1>
+                Find your<br>
+                <span>perfect property.</span>
+            </h1>
+
+            <p class="properties-hero-text">
+                Explore our collection of premium homes,
+                apartments and commercial properties.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- PROPERTIES -->
+
+    <main class="all-properties">
+
+        <div class="properties-top">
+
+            <div>
+
+                <p class="section-label">
+                    OUR COLLECTION
+                </p>
+
+                <h2>
+                    Featured properties
+                </h2>
+
+            </div>            <p class="property-count">
+                05 Properties Available
+            </p>
+
+        </div>
+
+
+
+        <div class="property-grid">
+
+            <!-- PROPERTY 1 - Orchid Gardenia -->
+            <div class="property-card" data-type="Apartment" data-location="Palanpur" data-purpose="Buy,Rent" data-price-min="45" data-price-max="78" data-bhk="2,3" data-area-min="720" data-area-max="1350" data-furnished="Unfurnished">
+                <div class="property-image" style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory;">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="https://imgcdn.houssed.com/assets/Files/Projects/2738/Project%20Image/4edf7dffff6cd501059c3e67a46bbb29.webp" alt="Orchid Gardenia Main Elevation" onerror="this.onerror=null; this.src='https://housing-images.n7net.in/4f2250e8/1f2becc3ae2c66b9953d6d7c3b319258/v0/large/orchid_gardenia-palanpur_gam-surat-orchid_corp.jpg'">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="https://housing-images.n7net.in/4f2250e8/1f2becc3ae2c66b9953d6d7c3b319258/v0/large/orchid_gardenia-palanpur_gam-surat-orchid_corp.jpg" alt="Orchid Gardenia Towers Perspective" onerror="this.onerror=null; this.src='https://imgcdn.houssed.com/assets/Files/Projects/2738/Project%20Image/4edf7dffff6cd501059c3e67a46bbb29.webp'">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="https://imgcdn.houssed.com/assets/Files/Projects/2738/Project%20Image/4edf7dffff6cd501059c3e67a46bbb29.webp" alt="Orchid Gardenia 3D View" onerror="this.onerror=null; this.src='https://housing-images.n7net.in/4f2250e8/1f2becc3ae2c66b9953d6d7c3b319258/v0/large/orchid_gardenia-palanpur_gam-surat-orchid_corp.jpg'">
+                    <span class="property-tag" style="position: absolute; background: #2563eb; color: #fff;">NEW LAUNCH</span>
+                </div>
+                <div class="property-info">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <h3>Orchid Gardenia</h3>
+                        <div class="card-google-badge">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+                            <span class="g-star">★</span>
+                            <span>4.8</span>
+                            <span style="color:#64748b; font-weight:normal; font-size:11px;">(56)</span>
+                        </div>
+                    </div>
+                    <p class="location">📍 Gauravpath Road, Palanpur, Surat</p>
+                    <div class="property-details">
+                        <span>🛏 2 & 3 BHK</span>
+                        <span>🛁 2-3 Baths</span>
+                        <span>📐 720-1,350 sq.ft</span>
+                    </div>
+                    <div class="property-bottom" style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                        <strong>₹45.0L - ₹78.0 Lacs</strong>
+                        <div style="display: flex; gap: 6px;">
+                            <a href="orchid-gardenia.html?tab=video" style="background: #ef4444; color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+                                🎬 Video
+                            </a>
+                            <a href="orchid-gardenia.html">View Details →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROPERTY 2 - Anand Aspire -->
+            <div class="property-card" data-type="Apartment" data-location="Jahangirabad" data-purpose="Buy" data-price-min="47.4" data-price-max="67.5" data-bhk="2,3" data-area-min="850" data-area-max="1450" data-furnished="Semi Furnished">
+                <div class="property-image" style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory;">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="https://www.balarhomes.com/images/aspire/slider/4.jpg" alt="Anand Aspire Elevation" onerror="this.src='https://www.balarhomes.com/images/aspire/gallery-01.jpg'">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="https://www.balarhomes.com/images/aspire/gallery-01.jpg" alt="Anand Aspire Podium Garden" onerror="this.src='https://www.balarhomes.com/images/aspire/slider/1.jpg'">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="https://www.balarhomes.com/images/aspire/slider/2.jpg" alt="Anand Aspire Balcony View" onerror="this.src='https://www.balarhomes.com/images/aspire/gallery-02.jpg'">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="https://www.balarhomes.com/images/aspire/slider/3.jpg" alt="Anand Aspire Amenities" onerror="this.src='https://www.balarhomes.com/images/aspire/gallery-03.jpg'">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="https://www.balarhomes.com/images/aspire/slider/1.jpg" alt="Anand Aspire Living Interior" onerror="this.src='https://www.balarhomes.com/images/aspire/gallery-04.jpg'">
+                    <span class="property-tag" style="position: absolute; background: #2563eb; color: #fff;">NEW LAUNCH</span>
+                </div>
+                <div class="property-info">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <h3>Anand Aspire</h3>
+                        <div class="card-google-badge">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+                            <span class="g-star">★</span>
+                            <span>4.8</span>
+                            <span style="color:#64748b; font-weight:normal; font-size:11px;">(42)</span>
+                        </div>
+                    </div>
+                    <p class="location">📍 Beside D-Mart, Jahangirabad, Surat</p>
+                    <div class="property-details">
+                        <span>🛏 2 & 3 BHK</span>
+                        <span>🛁 2-3 Baths</span>
+                        <span>📐 850-1,450 sq.ft</span>
+                    </div>
+                    <div class="property-bottom" style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                        <strong>₹47.4L - ₹67.5 Lacs</strong>
+                        <div style="display: flex; gap: 6px;">
+                            <a href="anand-aspire.html?tab=video" style="background: #ef4444; color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+                                🎬 Video
+                            </a>
+                            <a href="anand-aspire.html">View Details →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROPERTY 3 - Rameshwaram Ivaan -->
+            <div class="property-card" data-type="Apartment" data-location="Palanpur" data-purpose="Buy,Rent" data-price-min="51.32" data-price-max="85" data-bhk="2,3" data-area-min="716" data-area-max="1195" data-furnished="Unfurnished">
+
+                <div class="property-image" style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory;">
+
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="images/media_1789368581313.png" alt="Rameshwaram Ivaan 1">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="images/media_1789368586605.png" alt="Rameshwaram Ivaan 2">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="images/media_1789368594517.png" alt="Rameshwaram Ivaan 3">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="images/media_1789368598690.png" alt="Rameshwaram Ivaan 4">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="images/media_1789368603161.png" alt="Rameshwaram Ivaan 5">
+
+                    <span class="property-tag" style="position: absolute;">
+                        FOR SALE
+                    </span>
+
+                </div>
+
+
+                <div class="property-info">
+
+                    <h3>
+                        Rameshwaram Ivaan
+                    </h3>
+
+                    <p class="location">
+                        📍 Palanpur, Surat
+                    </p>
+
+                    <div class="property-details">
+
+                        <span>🛏 2, 3 BHK</span>
+
+                        <span>🛁 2 Baths</span>
+
+                        <span>📐 716-1195 sq.ft</span>
+
+                    </div>
+
+
+                    <div class="property-bottom">
+
+                        <strong>
+                            ₹51.32 Lacs+
+                        </strong>
+
+                        <a href="property-details.html">
+                            View Details →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- PROPERTY 4 - Shreepad Celebrations -->
+            <div class="property-card" data-type="Apartment" data-location="Palanpur" data-purpose="Buy" data-price-min="85" data-price-max="110" data-bhk="3" data-area-min="1057" data-area-max="1057" data-furnished="Fully Furnished">
+                <div class="property-image" style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory;">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="images/shreepad_celebrations_3.jpg" alt="Shreepad Celebrations Aerial View">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="images/shreepad_celebrations_1.jpg" alt="Shreepad Celebrations Living Room">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="images/shreepad_celebrations_2.jpg" alt="Shreepad Celebrations Dining">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="images/shreepad_celebrations_4.jpg" alt="Shreepad Celebrations Lobby">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="images/shreepad_celebrations_5.jpg" alt="Shreepad Celebrations Entrance">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="images/shreepad_celebrations_6.jpg" alt="Shreepad Celebrations Door">
+                    <span class="property-tag" style="position: absolute;">READY TO MOVE</span>
+                </div>
+                <div class="property-info">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <h3>Shreepad Celebrations</h3>
+                        <div class="card-google-badge">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+                            <span class="g-star">★</span>
+                            <span data-google-rating-val>4.6</span>
+                            <span style="color:#64748b; font-weight:normal; font-size:11px;">(<span data-google-reviews-count>48</span>)</span>
+                        </div>
+                    </div>
+                    <p class="location">📍 Gaurav Path, Palanpur, Surat</p>
+                    <div class="property-details">
+                        <span>🛏 3 BHK</span>
+                        <span>🛁 2 Baths</span>
+                        <span>📐 1,057 sq.ft</span>
+                    </div>
+                    <div class="property-bottom">
+                        <strong>₹85L - ₹1.10 Cr</strong>
+                        <a href="shreepad-celebrations.html">View Details →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROPERTY 5 - Shreepad Inspire -->
+            <div class="property-card" data-type="Apartment" data-location="Palanpur-Pal" data-purpose="Buy" data-price-min="95" data-price-max="185" data-bhk="3,4" data-area-min="1220" data-area-max="2545" data-furnished="Fully Furnished">
+                <div class="property-image" style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory;">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="images/shreepad_inspire_1.jpg" alt="Shreepad Inspire Main Entrance">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="images/media_1789396192742.png" alt="Shreepad Inspire Elevation">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="images/media_1789396228096.png" alt="Shreepad Inspire Night View">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="images/media_1789396245732.png" alt="Shreepad Inspire Garden View">
+                    <img style="scroll-snap-align: start; flex-shrink: 0; width: 100%; object-fit: cover;" src="images/media_1789396213126.png" alt="Shreepad Inspire Amenities">
+                    <span class="property-tag" style="position: absolute; background: #16a34a; color: #fff;">READY TO MOVE</span>
+                </div>
+                <div class="property-info">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <h3>Shreepad Inspire</h3>
+                        <div class="card-google-badge">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+                            <span class="g-star">★</span>
+                            <span>4.7</span>
+                            <span style="color:#64748b; font-weight:normal; font-size:11px;">(62)</span>
+                        </div>
+                    </div>
+                    <p class="location">📍 Gaurav Path, Palanpur-Pal, Surat</p>
+                    <div class="property-details">
+                        <span>🛏 3 & 4 BHK</span>
+                        <span>🛁 3-4 Baths</span>
+                        <span>📐 1,220-2,545 sq.ft</span>
+                    </div>
+                    <div class="property-bottom">
+                        <strong>₹95L - ₹1.85 Cr</strong>
+                        <a href="shreepad_inspire_page.html">View Details →</a>
+                    </div>
+                </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- INTERACTIVE MAP SECTION -->
+
+    <section class="interactive-map-section" id="property-map">
+
+        <div class="map-header">
+
+            <div class="map-header-text">
+                <p>📍 EXPLORE SURAT PROPERTIES</p>
+                <h2>Interactive Property Map</h2>
+            </div>
+
+            <div class="map-filter-btns">
+                <button type="button" class="map-filter-btn active" data-map-loc="all">🌐 All Locations</button>
+                <button type="button" class="map-filter-btn" data-map-loc="Palanpur">📍 Palanpur</button>
+                <button type="button" class="map-filter-btn" data-map-loc="Jahangirabad">📍 Jahangirabad</button>
+                <button type="button" class="map-filter-btn" data-map-loc="Gaurav Path">📍 Gaurav Path</button>
+                <button type="button" class="map-filter-btn" id="geoLocateBtn" style="background:#2563eb; color:#fff; border-color:#2563eb;">🎯 Find Near Me</button>
+            </div>
+
+        </div>
+
+        <div class="map-wrapper">
+
+            <!-- Interactive Map Container -->
+            <div id="map"></div>
+
+            <!-- Property Sidebar -->
+            <div class="map-sidebar">
+                <div class="map-sidebar-title">
+                    <span>Nearby Properties</span>
+                    <span id="mapPropCount">5 Properties</span>
+                </div>
+                <div id="mapSidebarCards" style="display: flex; flex-direction: column; gap: 12px;"></div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CTA -->
+
+    <section class="cta">
+
+        <div>
+
+            <p>
+                NEED HELP FINDING A PROPERTY?
+            </p>
+
+            <h2>
+                Talk to our<br>
+                property experts.
+            </h2>
+
+        </div>
+
+
+        <a href="contact.html">
+            Contact Us →
+        </a>
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-logo">
+            PrimeNest<span> Realty</span>
+        </div>
+
+        <p>
+            Premium real estate solutions for modern living.
+        </p>
+
+        <div class="footer-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="properties.html">
+                Properties
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </div>
+
+        <p class="copyright">
+            © 2026 PrimeNest Realty. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/google-ratings.js?v=1"></script>
+    <script src="js/script.js?v=2"></script>
+    <script src="js/property-map.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script src="js/lead-system.js"></script>
+    <!-- <script src="js/ai-assistant.js"></script> -->
+
+</body>
+
+</html>

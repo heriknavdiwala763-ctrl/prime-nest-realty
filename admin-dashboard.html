@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | PrimeNest Realty</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: #0f172a;
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: #1e293b;
+            border-right: 1px solid #334155;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .sidebar-logo {
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+        }
+        .sidebar-logo span {
+            color: #f59e0b;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: #2563eb;
+            color: #fff;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            border-top: 1px solid #334155;
+            padding-top: 20px;
+        }
+
+        .logout-btn {
+            width: 100%;
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .logout-btn:hover {
+            background: #ef4444;
+            color: #fff;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 30px 40px;
+            overflow-y: auto;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .user-pill {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #1e293b;
+            padding: 8px 18px;
+            border-radius: 30px;
+            border: 1px solid #334155;
+        }
+
+        .user-avatar {
+            width: 34px;
+            height: 34px;
+            background: #2563eb;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .stat-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .stat-card .stat-label {
+            font-size: 13px;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+
+        .stat-card .stat-value {
+            font-size: 30px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .stat-card .stat-badge {
+            font-size: 11px;
+            color: #4ade80;
+            background: rgba(74, 222, 128, 0.1);
+            padding: 3px 8px;
+            border-radius: 20px;
+            width: fit-content;
+        }
+
+        /* Section table */
+        .card-table-wrapper {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .table-header h2 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 14px 16px;
+            font-size: 14px;
+            border-bottom: 1px solid #334155;
+        }
+
+        th {
+            color: #94a3b8;
+            font-weight: 600;
+        }
+
+        td {
+            color: #e2e8f0;
+        }
+
+        .status-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .status-ready {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+        }
+        .status-sale {
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+        }
+
+        .view-link {
+            color: #60a5fa;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .view-link:hover {
+            text-decoration: underline;
+        }
+
+        .quick-btn {
+            background: #2563eb;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .quick-btn:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            PrimeNest<span> Realty</span>
+            <div style="font-size: 11px; color: #94a3b8; font-weight: normal; margin-top: 4px;">ADMIN PORTAL</div>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="admin-dashboard.html" class="nav-item active">📊 Dashboard</a>
+            <a href="properties.html" class="nav-item">🏢 Properties (04)</a>
+            <a href="shreepad-celebrations.html" class="nav-item">⭐ Google Reviews Sync</a>
+            <a href="index.html" class="nav-item">🌐 Live Website</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <button class="logout-btn" onclick="logout()">🔒 Sign Out</button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        
+        <div class="topbar">
+            <div>
+                <h1 style="font-size: 24px; font-weight: 800;">Welcome back, <span id="adminNameDisplay">Admin</span> 👋</h1>
+                <p style="color: #94a3b8; font-size: 14px; margin-top: 4px;">Here is your live real estate performance overview</p>
+            </div>
+
+            <div class="user-pill">
+                <div class="user-avatar" id="avatarLetter">A</div>
+                <div>
+                    <strong style="font-size: 13px; display: block;" id="adminPillUser">adminx</strong>
+                    <span style="font-size: 11px; color: #4ade80;">● Online</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-label">Total Properties Listed</span>
+                <span class="stat-value">04</span>
+                <span class="stat-badge">Surat Premium Projects</span>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">Google Rating Live Sync</span>
+                <span class="stat-value" style="color: #f59e0b;">4.7 ★</span>
+                <span class="stat-badge">🟢 Verified Google Reviews</span>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">Buyer Inquiries (Leads)</span>
+                <span class="stat-value" id="totalLeadsStat" style="color: #38bdf8;">03</span>
+                <span class="stat-badge">🟢 Real-time Website Enquiries</span>
+            </div>
+
+            <div class="stat-card" style="border-color: #f59e0b;">
+                <span class="stat-label">Site Visit Requests</span>
+                <span class="stat-value" id="totalVisitsStat" style="color: #f59e0b;">03</span>
+                <span class="stat-badge" id="pendingVisitsBadge">🟡 1 Pending Approval</span>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">Monthly Visitors</span>
+                <span class="stat-value">12,840</span>
+                <span class="stat-badge">↑ 18.4% Growth</span>
+            </div>
+        </div>
+
+        <!-- PROPERTIES LIST -->
+        <div class="card-table-wrapper">
+            <div class="table-header">
+                <h2>Featured Listed Properties</h2>
+                <a href="properties.html" class="quick-btn">View All on Site →</a>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Type</th>
+                        <th>Location</th>
+                        <th>Price</th>
+                        <th>Google Rating</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Anand Aspire</strong></td>
+                        <td>2 & 3 BHK Apartment</td>
+                        <td>Beside D-Mart, Jahangirabad, Surat</td>
+                        <td>₹47.4L - ₹67.5 Lacs</td>
+                        <td>⭐ 4.8 (42 reviews)</td>
+                        <td><span class="status-tag" style="background: #2563eb; color: #fff; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 700;">NEW LAUNCH</span></td>
+                        <td><a href="anand-aspire.html" class="view-link">View Page</a></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Shreepad Inspire</strong></td>
+                        <td>3 & 4 BHK Apartment</td>
+                        <td>Gaurav Path, Palanpur, Surat</td>
+                        <td>₹95L - ₹1.85 Cr</td>
+                        <td>⭐ 4.7 (62 reviews)</td>
+                        <td><span class="status-tag status-ready">READY TO MOVE</span></td>
+                        <td><a href="shreepad_inspire_page.html" class="view-link">View Page</a></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Shreepad Celebrations</strong></td>
+                        <td>3 BHK Apartment</td>
+                        <td>Gaurav Path, Surat</td>
+                        <td>₹85L - ₹1.10 Cr</td>
+                        <td>⭐ 4.6 (48 reviews)</td>
+                        <td><span class="status-tag status-ready">READY TO MOVE</span></td>
+                        <td><a href="shreepad-celebrations.html" class="view-link">View Page</a></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rameshwaram Ivaan</strong></td>
+                        <td>2, 3 BHK Apartment</td>
+                        <td>Palanpur, Surat</td>
+                        <td>₹51.32 Lacs+</td>
+                        <td>⭐ 4.6 (45 reviews)</td>
+                        <td><span class="status-tag status-sale">FOR SALE</span></td>
+                        <td><a href="property-details.html" class="view-link">View Page</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SITE VISIT REQUESTS MANAGEMENT TABLE -->
+        <div class="card-table-wrapper" style="border-color: #f59e0b; margin-bottom: 35px;">
+            <div class="table-header">
+                <div>
+                    <h2>🚗 Customer Site Visit Requests Management</h2>
+                    <p style="font-size: 13px; color: #94a3b8; margin-top: 2px;">Approve or Reject customer site visit requests & send instant WhatsApp confirmation</p>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button type="button" onclick="filterVisits('all')" style="background: #1e293b; color: #e2e8f0; border: 1px solid #334155; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;">All</button>
+                    <button type="button" onclick="filterVisits('Pending')" style="background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3); padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;">Pending</button>
+                    <button type="button" onclick="filterVisits('Approved')" style="background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;">Approved</button>
+                    <button type="button" onclick="clearAllVisits()" style="background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;">🗑️ Clear</button>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Req ID & Time</th>
+                        <th>Customer Details</th>
+                        <th>Property</th>
+                        <th>Requested Date & Slot</th>
+                        <th>Pickup Preference</th>
+                        <th>Broker Status</th>
+                        <th>Approve / Reject Action</th>
+                    </tr>
+                </thead>
+                <tbody id="visitsTableBody">
+                    <!-- Rendered dynamically via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- BUYER INQUIRIES & LEADS TABLE -->
+        <div class="card-table-wrapper" style="border-color: #2563eb;">
+            <div class="table-header">
+                <div>
+                    <h2>📩 Live Buyer Enquiries & Leads</h2>
+                    <p style="font-size: 13px; color: #94a3b8; margin-top: 2px;">Real-time leads submitted via 'Contact Broker' website forms</p>
+                </div>
+                <button type="button" onclick="clearAllLeads()" style="background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;">
+                    🗑️ Clear Leads
+                </button>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Client Name</th>
+                        <th>Mobile Number</th>
+                        <th>Property Interested</th>
+                        <th>Message</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="leadsTableBody">
+                    <!-- Rendered dynamically via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+
+    <script>
+        // Load logged in admin username
+        const user = localStorage.getItem('primeNest_admin_user') || 'adminx';
+        document.getElementById('adminNameDisplay').textContent = user;
+        document.getElementById('adminPillUser').textContent = user;
+        document.getElementById('avatarLetter').textContent = user.charAt(0).toUpperCase();
+
+        function logout() {
+            localStorage.removeItem('primeNest_admin_logged_in');
+            localStorage.removeItem('primeNest_admin_user');
+            window.location.href = 'admin-login.html';
+        }
+
+        // Live Leads Table Rendering
+        function loadDashboardLeads() {
+            const tbody = document.getElementById("leadsTableBody");
+            const leadCountStat = document.getElementById("totalLeadsStat");
+            if (!tbody) return;
+
+            let leads = [];
+            try {
+                const raw = localStorage.getItem("primenest_leads");
+                if (!raw) {
+                    leads = [
+                        { id: "LEAD-101", name: "Rajesh Sharma", phone: "+91 98250 12345", property: "Orchid Gardenia", message: "Interested in 3 BHK flat. Want to schedule a site visit this weekend.", date: "2026-09-24", time: "04:15 PM", status: "New" },
+                        { id: "LEAD-102", name: "Priya Patel", phone: "+91 99090 87654", property: "Anand Aspire", message: "Please share floor plan and discount offers for 2 BHK.", date: "2026-09-24", time: "02:30 PM", status: "Contacted" },
+                        { id: "LEAD-103", name: "Amit Desai", phone: "+91 98981 44332", property: "Shreepad Inspire", message: "Looking for ready-to-move 4 BHK penthouse. Please call back.", date: "2026-09-23", time: "11:45 AM", status: "Closed" }
+                    ];
+                    localStorage.setItem("primenest_leads", JSON.stringify(leads));
+                } else {
+                    leads = JSON.parse(raw);
+                }
+            } catch(e) {
+                leads = [];
+            }
+
+            if (leadCountStat) leadCountStat.textContent = leads.length < 10 ? '0' + leads.length : leads.length;
+
+            if (leads.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:#94a3b8; padding:30px;">No buyer leads received yet. Submit an enquiry via the 'Contact Broker' form on the site to see it here live!</td></tr>`;
+                return;
+            }
+
+            let html = "";
+            leads.forEach((lead, index) => {
+                let statusBadge = `<span style="background:rgba(37,99,235,0.2); color:#60a5fa; padding:3px 8px; border-radius:12px; font-size:11px; font-weight:700;">New</span>`;
+                if (lead.status === "Contacted") {
+                    statusBadge = `<span style="background:rgba(245,158,11,0.2); color:#f59e0b; padding:3px 8px; border-radius:12px; font-size:11px; font-weight:700;">Contacted</span>`;
+                } else if (lead.status === "Closed") {
+                    statusBadge = `<span style="background:rgba(34,197,94,0.2); color:#4ade80; padding:3px 8px; border-radius:12px; font-size:11px; font-weight:700;">Closed</span>`;
+                }
+
+                const cleanPhone = lead.phone.replace(/[^0-9]/g, '');
+
+                html += `
+                    <tr>
+                        <td style="white-space:nowrap;"><span style="font-size:12px; color:#94a3b8;">${lead.date}</span><br><strong>${lead.time || ''}</strong></td>
+                        <td><strong>${lead.name}</strong></td>
+                        <td><a href="tel:${lead.phone}" style="color:#38bdf8; text-decoration:none; font-weight:600;">📞 ${lead.phone}</a></td>
+                        <td><span style="background:#0f172a; color:#e2e8f0; padding:4px 10px; border-radius:6px; font-size:12px; font-weight:600;">🏢 ${lead.property}</span></td>
+                        <td style="max-width:240px; font-size:13px; color:#cbd5e1;">${lead.message}</td>
+                        <td>${statusBadge}</td>
+                        <td style="white-space:nowrap;">
+                            <a href="https://wa.me/${cleanPhone}?text=Hello%20${encodeURIComponent(lead.name)},%20thank%20you%20for%20your%20enquiry%20regarding%20${encodeURIComponent(lead.property)}%20at%20PrimeNest%20Realty." target="_blank" style="background:#16a34a; color:#fff; padding:5px 10px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:4px; margin-right:4px;">
+                                💬 WhatsApp
+                            </a>
+                            <button type="button" onclick="deleteLead(${index})" style="background:rgba(239,68,68,0.15); color:#ef4444; border:none; padding:5px 8px; border-radius:6px; cursor:pointer; font-size:12px;">🗑️</button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            tbody.innerHTML = html;
+        }
+
+        function deleteLead(index) {
+            let leads = JSON.parse(localStorage.getItem("primenest_leads")) || [];
+            leads.splice(index, 1);
+            localStorage.setItem("primenest_leads", JSON.stringify(leads));
+            loadDashboardLeads();
+        }
+
+        function clearAllLeads() {
+            if (confirm("Are you sure you want to clear all buyer leads?")) {
+                localStorage.removeItem("primenest_leads");
+                loadDashboardLeads();
+            }
+        }
+
+        // Initialize on load
+        loadDashboardLeads();
+        loadDashboardVisits();
+
+        // ==========================================
+        // SITE VISIT REQUESTS BROKER MANAGEMENT
+        // ==========================================
+        let currentVisitFilter = 'all';
+
+        function loadDashboardVisits() {
+            const tbody = document.getElementById("visitsTableBody");
+            const totalVisitsStat = document.getElementById("totalVisitsStat");
+            const pendingVisitsBadge = document.getElementById("pendingVisitsBadge");
+            if (!tbody) return;
+
+            let visits = [];
+            try {
+                const raw = localStorage.getItem("primenest_site_visits");
+                if (!raw) {
+                    visits = [
+                        { id: "VISIT-401", name: "Jignesh Patel", phone: "+91 98251 98765", property: "Orchid Gardenia", visitDate: "2026-09-28", timeSlot: "10:00 AM - 12:00 PM", pickup: "Free Broker Cab Pickup", status: "Pending", createdTime: "2026-09-25 10:30 AM" },
+                        { id: "VISIT-402", name: "Sneha Shah", phone: "+91 99799 12345", property: "Shreepad Inspire", visitDate: "2026-09-27", timeSlot: "02:00 PM - 04:00 PM", pickup: "Self Arrival", status: "Approved", createdTime: "2026-09-24 03:15 PM" },
+                        { id: "VISIT-403", name: "Karan Verma", phone: "+91 98980 55443", property: "Anand Aspire", visitDate: "2026-09-26", timeSlot: "05:00 PM - 07:00 PM", pickup: "Free Broker Cab Pickup", status: "Rejected", createdTime: "2026-09-24 11:20 AM" }
+                    ];
+                    localStorage.setItem("primenest_site_visits", JSON.stringify(visits));
+                } else {
+                    visits = JSON.parse(raw);
+                }
+            } catch(e) {
+                visits = [];
+            }
+
+            const pendingCount = visits.filter(v => v.status === "Pending").length;
+            if (totalVisitsStat) totalVisitsStat.textContent = visits.length < 10 ? '0' + visits.length : visits.length;
+            if (pendingVisitsBadge) pendingVisitsBadge.textContent = `🟡 ${pendingCount} Pending Approval`;
+
+            let filtered = visits;
+            if (currentVisitFilter !== 'all') {
+                filtered = visits.filter(v => v.status === currentVisitFilter);
+            }
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:#94a3b8; padding:30px;">No site visit requests found in '${currentVisitFilter}' view.</td></tr>`;
+                return;
+            }
+
+            let html = "";
+            filtered.forEach((visit, index) => {
+                let statusBadge = `<span style="background:rgba(245,158,11,0.2); color:#f59e0b; padding:4px 10px; border-radius:12px; font-size:12px; font-weight:700;">🟡 Pending</span>`;
+                if (visit.status === "Approved") {
+                    statusBadge = `<span style="background:rgba(34,197,94,0.2); color:#4ade80; padding:4px 10px; border-radius:12px; font-size:12px; font-weight:700;">🟢 Approved</span>`;
+                } else if (visit.status === "Rejected") {
+                    statusBadge = `<span style="background:rgba(239,68,68,0.2); color:#ef4444; padding:4px 10px; border-radius:12px; font-size:12px; font-weight:700;">🔴 Rejected</span>`;
+                }
+
+                const cleanPhone = visit.phone.replace(/[^0-9]/g, '');
+                const waMessageApproved = encodeURIComponent(`Hello ${visit.name}! Your Site Visit request (${visit.id}) for ${visit.property} on ${visit.visitDate} (${visit.timeSlot}) has been APPROVED by PrimeNest Realty! Pickup: ${visit.pickup}. Our executive will meet you.`);
+                const waMessageRejected = encodeURIComponent(`Hello ${visit.name}, regarding your Site Visit request (${visit.id}) for ${visit.property}, we currently need to reschedule the time slot. Please let us know your available time.`);
+
+                const waMessage = visit.status === "Approved" ? waMessageApproved : waMessageRejected;
+
+                html += `
+                    <tr>
+                        <td style="white-space:nowrap;"><strong style="color:#f59e0b;">${visit.id}</strong><br><span style="font-size:11px; color:#94a3b8;">${visit.createdTime}</span></td>
+                        <td><strong>${visit.name}</strong><br><a href="tel:${visit.phone}" style="color:#38bdf8; font-size:12px; text-decoration:none;">📞 ${visit.phone}</a></td>
+                        <td><span style="background:#0f172a; color:#e2e8f0; padding:4px 10px; border-radius:6px; font-size:12px; font-weight:600;">🏢 ${visit.property}</span></td>
+                        <td><strong>📅 ${visit.visitDate}</strong><br><span style="font-size:12px; color:#cbd5e1;">⏰ ${visit.timeSlot}</span></td>
+                        <td><span style="font-size:12px; color:#94a3b8;">${visit.pickup}</span></td>
+                        <td>${statusBadge}</td>
+                        <td style="white-space:nowrap;">
+                            <button type="button" onclick="updateVisitStatus(${index}, 'Approved')" style="background:#16a34a; color:#fff; border:none; padding:6px 12px; border-radius:6px; font-size:12px; font-weight:700; cursor:pointer; margin-right:4px;">
+                                ✅ Approve
+                            </button>
+                            <button type="button" onclick="updateVisitStatus(${index}, 'Rejected')" style="background:rgba(239,68,68,0.2); color:#ef4444; border:1px solid rgba(239,68,68,0.4); padding:6px 10px; border-radius:6px; font-size:12px; font-weight:700; cursor:pointer; margin-right:4px;">
+                                ❌ Reject
+                            </button>
+                            <a href="https://wa.me/${cleanPhone}?text=${waMessage}" target="_blank" style="background:#2563eb; color:#fff; padding:6px 10px; border-radius:6px; font-size:12px; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:4px; margin-right:4px;" title="Send WhatsApp Notification">
+                                💬 WhatsApp
+                            </a>
+                            <button type="button" onclick="deleteVisit(${index})" style="background:rgba(239,68,68,0.15); color:#ef4444; border:none; padding:6px 8px; border-radius:6px; cursor:pointer; font-size:12px;">🗑️</button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            tbody.innerHTML = html;
+        }
+
+        function updateVisitStatus(index, newStatus) {
+            let visits = JSON.parse(localStorage.getItem("primenest_site_visits")) || [];
+            if (visits[index]) {
+                visits[index].status = newStatus;
+                localStorage.setItem("primenest_site_visits", JSON.stringify(visits));
+                loadDashboardVisits();
+
+                const cleanPhone = visits[index].phone.replace(/[^0-9]/g, '');
+                const msg = newStatus === 'Approved' 
+                    ? `Hello ${visits[index].name}! Your Site Visit (${visits[index].id}) for ${visits[index].property} on ${visits[index].visitDate} (${visits[index].timeSlot}) is APPROVED! Cab: ${visits[index].pickup}.`
+                    : `Hello ${visits[index].name}, regarding Site Visit (${visits[index].id}) for ${visits[index].property}, please reply with your preferred rescheduled time.`;
+
+                if (confirm(`Status updated to ${newStatus}!\n\nWould you like to open WhatsApp to send confirmation to ${visits[index].name}?`)) {
+                    window.open(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`, '_blank');
+                }
+            }
+        }
+
+        function deleteVisit(index) {
+            let visits = JSON.parse(localStorage.getItem("primenest_site_visits")) || [];
+            visits.splice(index, 1);
+            localStorage.setItem("primenest_site_visits", JSON.stringify(visits));
+            loadDashboardVisits();
+        }
+
+        function clearAllVisits() {
+            if (confirm("Are you sure you want to clear all site visit requests?")) {
+                localStorage.removeItem("primenest_site_visits");
+                loadDashboardVisits();
+            }
+        }
+
+        function filterVisits(status) {
+            currentVisitFilter = status;
+            loadDashboardVisits();
+        }
+    </script>
+</body>
+</html>

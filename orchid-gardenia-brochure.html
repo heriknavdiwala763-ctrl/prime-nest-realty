@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orchid Gardenia - Official Architectural Brochure & Floor Plans</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: #0b0f19; color: #f1f5f9; padding: 30px 15px; line-height: 1.6; }
+        
+        .brochure-wrapper { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+        
+        .page { background: #1e293b; border-radius: 20px; border: 1px solid #334155; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); page-break-after: always; position: relative; }
+        
+        /* PAGE 1: COVER */
+        .cover-page { position: relative; min-height: 700px; display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(180deg, rgba(15,23,42,0.4) 0%, rgba(15,23,42,0.95) 100%), url('https://imgcdn.houssed.com/assets/Files/Projects/2738/Project%20Image/4edf7dffff6cd501059c3e67a46bbb29.webp') center/cover no-repeat; padding: 50px; }
+        .cover-header { display: flex; justify-content: space-between; align-items: flex-start; }
+        .developer-tag { background: rgba(37,99,235,0.9); backdrop-filter: blur(8px); color: #fff; padding: 8px 18px; border-radius: 30px; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+        .rera-no { background: rgba(15,23,42,0.8); backdrop-filter: blur(4px); color: #94a3b8; padding: 8px 18px; border-radius: 30px; font-size: 12px; border: 1px solid #334155; }
+        
+        .cover-title-box { margin-top: auto; margin-bottom: 20px; }
+        .cover-title-box h1 { font-size: 52px; font-weight: 800; color: #fff; letter-spacing: -1px; line-height: 1.1; margin-bottom: 10px; }
+        .cover-title-box p { font-size: 20px; color: #38bdf8; font-weight: 600; margin-bottom: 16px; }
+        .cover-features { display: flex; gap: 20px; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 20px; }
+        .feature-pill { background: rgba(255,255,255,0.1); backdrop-filter: blur(6px); padding: 10px 18px; border-radius: 12px; font-size: 14px; font-weight: 600; color: #f8fafc; border: 1px solid rgba(255,255,255,0.15); }
+        
+        /* INNER PAGE STYLES */
+        .page-header { background: #0f172a; padding: 24px 40px; border-bottom: 1px solid #334155; display: flex; justify-content: space-between; align-items: center; }
+        .page-header h2 { font-size: 20px; font-weight: 700; color: #38bdf8; display: flex; align-items: center; gap: 10px; }
+        .page-header span { font-size: 13px; color: #64748b; font-weight: 600; }
+        
+        .page-body { padding: 40px; }
+        
+        /* MASTER LAYOUT PAGE */
+        .master-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; }
+        .master-img-box { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid #334155; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .master-img-box img { width: 100%; height: 360px; object-fit: cover; display: block; }
+        .site-specs-list { display: flex; flex-direction: column; gap: 14px; }
+        .spec-item { background: #0f172a; padding: 16px 20px; border-radius: 12px; border: 1px solid #334155; display: flex; justify-content: space-between; align-items: center; }
+        .spec-item span { color: #94a3b8; font-size: 14px; }
+        .spec-item strong { color: #f8fafc; font-size: 15px; }
+
+        /* CARPET AREA & FLOOR PLAN PAGE */
+        .plan-card { background: #0f172a; border-radius: 16px; border: 1px solid #334155; padding: 24px; margin-bottom: 30px; }
+        .plan-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #334155; padding-bottom: 14px; }
+        .plan-card-header h3 { font-size: 22px; font-weight: 700; color: #4ade80; }
+        .badge-carpet { background: #2563eb; color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; }
+        
+        .floorplan-diagram { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; align-items: center; }
+        .diagram-img { background: #ffffff; padding: 12px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center; }
+        .diagram-img img { width: 100%; height: 260px; object-fit: contain; }
+        
+        .room-table { width: 100%; border-collapse: collapse; }
+        .room-table th, .room-table td { padding: 10px 14px; font-size: 13px; border-bottom: 1px solid #334155; text-align: left; }
+        .room-table th { color: #94a3b8; font-weight: 600; background: #1e293b; }
+        .room-table td { color: #e2e8f0; }
+        
+        /* AMENITIES SHOWCASE */
+        .amenities-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .amenity-card { background: #0f172a; border-radius: 14px; border: 1px solid #334155; overflow: hidden; }
+        .amenity-card img { width: 100%; height: 160px; object-fit: cover; }
+        .amenity-card-info { padding: 14px; }
+        .amenity-card-info h4 { font-size: 15px; font-weight: 700; color: #38bdf8; margin-bottom: 4px; }
+        .amenity-card-info p { font-size: 12px; color: #94a3b8; }
+        
+        /* SPECIFICATIONS TABLE */
+        .specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .specs-box { background: #0f172a; padding: 20px; border-radius: 14px; border: 1px solid #334155; }
+        .specs-box h4 { font-size: 16px; font-weight: 700; color: #f59e0b; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .specs-box ul { list-style: none; }
+        .specs-box ul li { font-size: 13px; color: #cbd5e1; margin-bottom: 8px; position: relative; padding-left: 18px; }
+        .specs-box ul li::before { content: "🔹"; position: absolute; left: 0; font-size: 10px; top: 2px; }
+
+        /* PRICE & PAYMENT PLAN PAGE */
+        .price-summary-box { background: linear-gradient(135deg, #1e3a8a, #0f172a); padding: 30px; border-radius: 16px; border: 1px solid #2563eb; margin-bottom: 30px; }
+        .price-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .price-row:last-child { border-bottom: none; }
+        .price-row span { font-size: 16px; color: #cbd5e1; font-weight: 500; }
+        .price-row strong { font-size: 22px; color: #4ade80; font-weight: 800; }
+
+        /* FLOATING ACTION BAR */
+        .print-btn-bar { position: fixed; bottom: 20px; right: 20px; z-index: 99999; display: flex; gap: 12px; }
+        .btn-action { background: #2563eb; color: #fff; padding: 14px 28px; border-radius: 30px; font-weight: 700; text-decoration: none; border: none; cursor: pointer; box-shadow: 0 10px 25px rgba(37,99,235,0.5); font-size: 15px; display: flex; align-items: center; gap: 8px; transition: transform 0.2s; }
+        .btn-action:hover { transform: translateY(-2px); background: #1d4ed8; }
+        .btn-back { background: #334155; color: #fff; }
+
+        @media print {
+            body { background: #fff; color: #000; padding: 0; }
+            .page { border: none; box-shadow: none; background: #fff; color: #000; margin-bottom: 0; }
+            .print-btn-bar { display: none; }
+            .page-header { background: #f8fafc; border-color: #cbd5e1; }
+            .page-header h2 { color: #1e3a8a; }
+            .plan-card, .spec-item, .amenity-card, .specs-box { background: #f8fafc; color: #000; border-color: #cbd5e1; }
+            .spec-item span, .amenity-card-info p, .specs-box ul li { color: #334155; }
+            .spec-item strong, .plan-card-header h3, .amenity-card-info h4 { color: #000; }
+            .price-summary-box { background: #f1f5f9; border-color: #cbd5e1; }
+            .price-row span { color: #000; }
+            .price-row strong { color: #16a34a; }
+            .diagram-img { border-color: #cbd5e1; }
+            .room-table th { background: #e2e8f0; color: #000; }
+            .room-table td { color: #000; border-color: #cbd5e1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FLOATING ACTION BUTTONS -->
+    <div class="print-btn-bar">
+        <a href="orchid-gardenia.html" class="btn-action btn-back">← Back to Website</a>
+        <button class="btn-action" onclick="window.print()">🖨️ Download / Print Official PDF Brochure</button>
+    </div>
+
+    <div class="brochure-wrapper">
+
+        <!-- PAGE 1: GRAND COVER PAGE -->
+        <div class="page cover-page">
+            <div class="cover-header">
+                <span class="developer-tag">Orchid Infra & Kiyan Group</span>
+                <span class="rera-no">RERA Reg: PR/GJ/SURAT/CHORASI/SUDA/RAA09560/261221</span>
+            </div>
+            
+            <div class="cover-title-box">
+                <h1>ORCHID GARDENIA</h1>
+                <p>Luxury 2 & 3 BHK Apartments on Gauravpath Road, Palanpur, Surat</p>
+                
+                <div class="cover-features">
+                    <div class="feature-pill">🏢 8 High-Rise Towers (G+13)</div>
+                    <div class="feature-pill">🌳 3.0 Acres Gated Township</div>
+                    <div class="feature-pill">🏠 416 Vastu-Compliant Homes</div>
+                    <div class="feature-pill">🔑 RERA Possession: Nov 2027</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 2: MASTER LAYOUT & SITE PLAN -->
+        <div class="page">
+            <div class="page-header">
+                <h2>🏛️ Master Layout & Site Layout Plan</h2>
+                <span>ORCHID GARDENIA TOWNSHIP PLAN</span>
+            </div>
+            <div class="page-body">
+                <div class="master-grid">
+                    <div class="master-img-box">
+                        <img src="https://imgcdn.houssed.com/assets/Files/Projects/2738/Project%20Image/4edf7dffff6cd501059c3e67a46bbb29.webp" alt="Orchid Gardenia Master Plan">
+                    </div>
+                    <div class="site-specs-list">
+                        <div class="spec-item">
+                            <span>Total Land Parcel</span>
+                            <strong>3.00 Acres (Grand Campus)</strong>
+                        </div>
+                        <div class="spec-item">
+                            <span>Total Towers & Structure</span>
+                            <strong>8 Towers (Block A to Block H)</strong>
+                        </div>
+                        <div class="spec-item">
+                            <span>Building Height</span>
+                            <strong>G + 13 Storey High Rise</strong>
+                        </div>
+                        <div class="spec-item">
+                            <span>Total Residential Units</span>
+                            <strong>416 Apartments</strong>
+                        </div>
+                        <div class="spec-item">
+                            <span>Elevators Provision</span>
+                            <strong>2 High-Speed Lifts per Tower</strong>
+                        </div>
+                        <div class="spec-item">
+                            <span>Power Backup</span>
+                            <strong>24x7 Generator for Common Area</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 3: CARPET AREA & UNIT FLOOR PLANS -->
+        <div class="page">
+            <div class="page-header">
+                <h2>📐 Unit Floor Plans & Carpet Area Blueprints</h2>
+                <span>ARCHITECTURAL FLOOR LAYOUTS</span>
+            </div>
+            <div class="page-body">
+                <!-- 2 BHK FLOOR PLAN -->
+                <div class="plan-card">
+                    <div class="plan-card-header">
+                        <h3>2 BHK Luxury Apartment Layout</h3>
+                        <span class="badge-carpet">Carpet Area: 720 - 850 sq.ft</span>
+                    </div>
+                    <div class="floorplan-diagram">
+                        <div class="diagram-img">
+                            <img src="https://housing-images.n7net.in/4f2250e8/1f2becc3ae2c66b9953d6d7c3b319258/v0/large/orchid_gardenia-palanpur_gam-surat-orchid_corp.jpg" alt="2 BHK Floor Plan Diagram">
+                            <span style="font-size: 11px; color: #64748b; margin-top: 6px; display: block;">Official 2 BHK Architectural Blueprint Dimensions</span>
+                        </div>
+                        <div>
+                            <table class="room-table">
+                                <thead>
+                                    <tr>
+                                        <th>Space / Room</th>
+                                        <th>Dimension (Ft)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Living & Dining Room</td><td>10'-0" x 16'-0"</td></tr>
+                                    <tr><td>Standing Balcony Deck</td><td>5'-0" Wide</td></tr>
+                                    <tr><td>Kitchen & Store</td><td>8'-6" x 11'-0"</td></tr>
+                                    <tr><td>Master Bedroom</td><td>11'-0" x 13'-0"</td></tr>
+                                    <tr><td>Attached Toilet</td><td>4'-6" x 7'-0"</td></tr>
+                                    <tr><td>Bedroom 2</td><td>10'-0" x 12'-0"</td></tr>
+                                    <tr><td>Common Toilet</td><td>4'-6" x 7'-0"</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 BHK FLOOR PLAN -->
+                <div class="plan-card">
+                    <div class="plan-card-header">
+                        <h3 style="color: #38bdf8;">3 BHK Premium Apartment Layout</h3>
+                        <span class="badge-carpet" style="background: #0284c7;">Carpet Area: 1,150 - 1,350 sq.ft</span>
+                    </div>
+                    <div class="floorplan-diagram">
+                        <div class="diagram-img">
+                            <img src="https://imgcdn.houssed.com/assets/Files/Projects/2738/Project%20Image/4edf7dffff6cd501059c3e67a46bbb29.webp" alt="3 BHK Floor Plan Diagram">
+                            <span style="font-size: 11px; color: #64748b; margin-top: 6px; display: block;">Official 3 BHK Architectural Blueprint Dimensions</span>
+                        </div>
+                        <div>
+                            <table class="room-table">
+                                <thead>
+                                    <tr>
+                                        <th>Space / Room</th>
+                                        <th>Dimension (Ft)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Entrance Foyer</td><td>4'-6" x 5'-0"</td></tr>
+                                    <tr><td>Grand Living Room</td><td>12'-0" x 18'-0"</td></tr>
+                                    <tr><td>Executive Balcony Deck</td><td>6'-0" Wide</td></tr>
+                                    <tr><td>Kitchen & Dining</td><td>10'-0" x 13'-6"</td></tr>
+                                    <tr><td>Master Suite 1</td><td>12'-0" x 14'-0"</td></tr>
+                                    <tr><td>Master Suite 2</td><td>11'-0" x 13'-0"</td></tr>
+                                    <tr><td>Bedroom 3</td><td>10'-6" x 12'-0"</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 4: AMENITIES SHOWCASE -->
+        <div class="page">
+            <div class="page-header">
+                <h2>✨ Modern Amenities & Lifestyle Features</h2>
+                <span>LIFESTYLE & RECREATION FACILITIES</span>
+            </div>
+            <div class="page-body">
+                <div class="amenities-gallery">
+                    <div class="amenity-card">
+                        <img src="https://housing-images.n7net.in/4f2250e8/1f2becc3ae2c66b9953d6d7c3b319258/v0/large/orchid_gardenia-palanpur_gam-surat-orchid_corp.jpg" alt="Entrance Lobby">
+                        <div class="amenity-card-info">
+                            <h4>Grand Entrance Foyer</h4>
+                            <p>Lavish double-height designer entrance lounge for each tower.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-card">
+                        <img src="https://imgcdn.houssed.com/assets/Files/Projects/2738/Project%20Image/4edf7dffff6cd501059c3e67a46bbb29.webp" alt="Landscaped Garden">
+                        <div class="amenity-card-info">
+                            <h4>Landscaped Garden & Lawns</h4>
+                            <p>Lush green walkways, flower beds & jogging track.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-card">
+                        <img src="https://housing-images.n7net.in/4f2250e8/1f2becc3ae2c66b9953d6d7c3b319258/v0/large/orchid_gardenia-palanpur_gam-surat-orchid_corp.jpg" alt="Children Play Area">
+                        <div class="amenity-card-info">
+                            <h4>Kids Play Arena & Skating Rink</h4>
+                            <p>Dedicated safe play zone with rubberized flooring.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-card">
+                        <img src="https://imgcdn.houssed.com/assets/Files/Projects/2738/Project%20Image/4edf7dffff6cd501059c3e67a46bbb29.webp" alt="Clubhouse & Gym">
+                        <div class="amenity-card-info">
+                            <h4>Modern Gymnasium & Fitness Studio</h4>
+                            <p>Fully equipped AC cardio & weight training gym.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-card">
+                        <img src="https://housing-images.n7net.in/4f2250e8/1f2becc3ae2c66b9953d6d7c3b319258/v0/large/orchid_gardenia-palanpur_gam-surat-orchid_corp.jpg" alt="Gazebo Sitout">
+                        <div class="amenity-card-info">
+                            <h4>Gazebo & Senior Citizen Corner</h4>
+                            <p>Shaded seating pavilions for relaxation and socializing.</p>
+                        </div>
+                    </div>
+                    <div class="amenity-card">
+                        <img src="https://imgcdn.houssed.com/assets/Files/Projects/2738/Project%20Image/4edf7dffff6cd501059c3e67a46bbb29.webp" alt="Indoor Games">
+                        <div class="amenity-card-info">
+                            <h4>Indoor Games & Sports Lounge</h4>
+                            <p>Table Tennis, Carrom, Chess & Pool tables.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 5: SPECIFICATIONS & MATERIALS -->
+        <div class="page">
+            <div class="page-header">
+                <h2>🛠️ Technical Specifications & Material Quality</h2>
+                <span>CONSTRUCTION STANDARDS</span>
+            </div>
+            <div class="page-body">
+                <div class="specs-grid">
+                    <div class="specs-box">
+                        <h4>🏗️ Structure & Masonry</h4>
+                        <ul>
+                            <li>Earthquake resistant RCC frame structure designed as per IS Codes.</li>
+                            <li>6" thick light-weight AAC block masonry for outer walls.</li>
+                            <li>Smooth internal plaster with double coat putty finish.</li>
+                        </ul>
+                    </div>
+                    <div class="specs-box">
+                        <h4>🪵 Flooring & Dado</h4>
+                        <ul>
+                            <li>800x800mm premium vitrified tile flooring in all rooms.</li>
+                            <li>Anti-skid ceramic tiles in balcony, wash area & toilets.</li>
+                            <li>Designer ceramic wall tiles up to lintel level in kitchen & bathrooms.</li>
+                        </ul>
+                    </div>
+                    <div class="specs-box">
+                        <h4>🚪 Doors & Windows</h4>
+                        <ul>
+                            <li>Decorative main entrance door with brass fittings & digital lock.</li>
+                            <li>Flush doors with laminate finish for internal bedrooms.</li>
+                            <li>Anodized heavy aluminum sliding windows with mosquito mesh.</li>
+                        </ul>
+                    </div>
+                    <div class="specs-box">
+                        <h4>⚡ Electrical & Plumbing</h4>
+                        <ul>
+                            <li>Concealed copper wiring (ISI mark Finolex/Polycab).</li>
+                            <li>Modular switches (Anchor/Legrand) with AC points in bedrooms.</li>
+                            <li>Concealed CPVC/UPVC piping with Jaquar/Cera CP fittings.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 6: PRICING & PAYMENT PLAN -->
+        <div class="page">
+            <div class="page-header">
+                <h2>💰 Official Price Sheet & Construction Payment Schedule</h2>
+                <span>TRANSPARENT PRICING</span>
+            </div>
+            <div class="page-body">
+                <div class="price-summary-box">
+                    <div class="price-row">
+                        <span>2 BHK Luxury Apartment (Carpet 720-850 sq.ft)</span>
+                        <strong>₹44.24 Lacs* Onwards</strong>
+                    </div>
+                    <div class="price-row">
+                        <span>3 BHK Premium Apartment (Carpet 1,150-1,350 sq.ft)</span>
+                        <strong>₹55.80 Lacs* Onwards</strong>
+                    </div>
+                    <div style="margin-top: 16px; font-size: 13px; color: #93c5fd; text-align: center;">
+                        *Government taxes (GST, Stamp Duty, Registration) extra as applicable. Booking Token: ₹1,00,000.
+                    </div>
+                </div>
+
+                <h3 style="font-size: 18px; font-weight: 700; color: #38bdf8; margin-bottom: 16px;">📅 Construction Linked Payment Schedule</h3>
+                <table class="room-table">
+                    <thead>
+                        <tr>
+                            <th>Milestone Stage</th>
+                            <th>Percentage Payment (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>At the time of Booking / Allotment</td><td><strong style="color:#38bdf8;">10%</strong></td></tr>
+                        <tr><td>Upon Completion of Plinth Level</td><td>15%</td></tr>
+                        <tr><td>Progressive Slab Castings (1st to 13th Floor)</td><td>45%</td></tr>
+                        <tr><td>Upon Completion of Masonry & Internal Plaster</td><td>15%</td></tr>
+                        <tr><td>Upon Flooring, Plumbing & Door-Window Installation</td><td>10%</td></tr>
+                        <tr><td>At the time of Possession & Handover (Nov 2027)</td><td><strong style="color:#4ade80;">5%</strong></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

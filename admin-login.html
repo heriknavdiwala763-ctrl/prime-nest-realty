@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal Login | PrimeNest Realty</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(10, 15, 29, 0.94), rgba(15, 23, 42, 0.96)),
+                        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=85') center/cover no-repeat fixed;
+            position: relative;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        /* Ambient background glow elements */
+        .ambient-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.25;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .glow-1 {
+            background: #2563eb;
+            top: -100px;
+            left: -100px;
+        }
+        .glow-2 {
+            background: #f59e0b;
+            bottom: -100px;
+            right: -100px;
+        }
+
+        /* Back to website button */
+        .back-home {
+            position: absolute;
+            top: 25px;
+            left: 30px;
+            z-index: 10;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 18px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .back-home:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateX(-3px);
+        }
+
+        /* Main Login Card */
+        .login-card {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 480px;
+            background: rgba(23, 30, 49, 0.75);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            padding: 42px 38px;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6),
+                        0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+            animation: cardAppear 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.97);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Header / Branding */
+        .card-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .brand-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(37, 99, 235, 0.15);
+            border: 1px solid rgba(37, 99, 235, 0.35);
+            color: #60a5fa;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .brand-badge span.pulse-icon {
+            width: 8px;
+            height: 8px;
+            background: #60a5fa;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #60a5fa;
+        }
+
+        .card-header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+
+        .card-header h1 span {
+            color: #f59e0b;
+        }
+
+        .card-header p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* Form Controls */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            color: #64748b;
+            font-size: 17px;
+            pointer-events: none;
+            transition: color 0.2s;
+        }
+
+        .form-input {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 14px 44px 14px 46px;
+            font-size: 14.5px;
+            color: #ffffff;
+            outline: none;
+            transition: all 0.25s ease;
+        }
+
+        .form-input::placeholder {
+            color: #475569;
+        }
+
+        .form-input:focus {
+            border-color: #3b82f6;
+            background: rgba(15, 23, 42, 0.85);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+        }
+
+        .form-input:focus ~ .input-icon {
+            color: #3b82f6;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 14px;
+            background: none;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            padding: 6px;
+            font-size: 16px;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .toggle-password:hover {
+            color: #cbd5e1;
+        }
+
+        /* Validation checklist */
+        .rules-list {
+            list-style: none;
+            margin-top: 10px;
+            padding: 12px;
+            background: rgba(15, 23, 42, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .rules-list li {
+            font-size: 12px;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s;
+        }
+
+        .rules-list li .rule-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            transition: all 0.25s;
+        }
+
+        .rules-list li.valid {
+            color: #4ade80;
+            font-weight: 500;
+        }
+
+        .rules-list li.valid .rule-dot {
+            background: #22c55e;
+            color: #0f172a;
+        }
+
+        .rules-list li.invalid-highlight {
+            color: #f87171;
+        }
+        .rules-list li.invalid-highlight .rule-dot {
+            background: #ef4444;
+            color: #ffffff;
+        }
+
+        /* Live status badge */
+        .status-badge {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+        .badge-pending {
+            background: rgba(148, 163, 184, 0.15);
+            color: #94a3b8;
+        }
+        .badge-valid {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+        }
+        .badge-invalid {
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+        }
+
+        /* Remember & Forgot row */
+        .form-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 18px 0 24px;
+            font-size: 13px;
+        }
+
+        .remember-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #94a3b8;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .remember-label input[type="checkbox"] {
+            accent-color: #2563eb;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .forgot-link {
+            color: #60a5fa;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .forgot-link:hover {
+            color: #93c5fd;
+            text-decoration: underline;
+        }
+
+        /* Login Button */
+        .login-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            border: none;
+            padding: 15px;
+            border-radius: 14px;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.5);
+            transition: all 0.25s ease;
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(37, 99, 235, 0.65);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Demo credentials helper card */
+        .demo-credentials-box {
+            margin-top: 24px;
+            padding: 14px 16px;
+            background: rgba(245, 158, 11, 0.08);
+            border: 1px dashed rgba(245, 158, 11, 0.35);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .demo-info {
+            font-size: 12px;
+            color: #cbd5e1;
+        }
+
+        .demo-info strong {
+            color: #fbbf24;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .fill-demo-btn {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .fill-demo-btn:hover {
+            background: #fbbf24;
+            color: #0f172a;
+        }
+
+        /* Error Banner */
+        .error-banner {
+            display: none;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #fca5a5;
+            padding: 12px 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            align-items: center;
+            gap: 10px;
+            animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+
+        /* Success Overlay */
+        .success-overlay {
+            display: none;
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 24px;
+            backdrop-filter: blur(15px);
+            z-index: 50;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .success-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin-bottom: 18px;
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.4);
+        }
+
+        .success-overlay h2 {
+            color: #ffffff;
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .success-overlay p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .loading-spinner {
+            width: 28px;
+            height: 28px;
+            border: 3px solid rgba(255, 255, 255, 0.15);
+            border-top-color: #3b82f6;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 520px) {
+            .login-card {
+                padding: 32px 24px;
+            }
+            .back-home {
+                top: 15px;
+                left: 15px;
+                font-size: 12px;
+                padding: 8px 14px;
+            }
+        }
+
+        /* ====================================
+           HANGING LAMP & PULL CORD STYLING
+        ==================================== */
+        body {
+            transition: background 0.6s ease;
+        }
+
+        body.lamp-off {
+            background: #050811 !important;
+        }
+
+        body.lamp-off .ambient-glow {
+            opacity: 0.05;
+        }
+
+        body.lamp-off .login-card {
+            opacity: 0.15;
+            filter: brightness(0.2) blur(6px);
+            pointer-events: none;
+            transition: all 0.6s ease;
+        }
+
+        body.lamp-on {
+            background: linear-gradient(135deg, #0b132b 0%, #1c1917 100%) !important;
+        }
+
+        body.lamp-on .login-card {
+            opacity: 1;
+            filter: brightness(1) blur(0);
+            pointer-events: auto;
+            border-color: rgba(245, 158, 11, 0.4);
+            box-shadow: 0 25px 70px -15px rgba(245, 158, 11, 0.3), 0 0 0 1px rgba(245, 158, 11, 0.2) inset;
+            transition: all 0.6s ease;
+        }
+
+        /* Lamp Container */
+        .lamp-wrapper {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            pointer-events: none;
+        }
+
+        .ceiling-mount {
+            width: 70px;
+            height: 16px;
+            background: linear-gradient(180deg, #475569, #1e293b);
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+            pointer-events: auto;
+        }
+
+        .lamp-wire {
+            width: 4px;
+            height: 80px;
+            background: linear-gradient(180deg, #334155, #0f172a);
+        }
+
+        .lamp-shade {
+            position: relative;
+            width: 150px;
+            height: 75px;
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            border-radius: 75px 75px 14px 14px;
+            border: 2.5px solid #334155;
+            border-bottom: 4px solid #d97706;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            pointer-events: auto;
+            transition: all 0.4s ease;
+        }
+
+        body.lamp-on .lamp-shade {
+            border-bottom-color: #fbbf24;
+            box-shadow: 0 0 35px rgba(251, 191, 36, 0.7);
+        }
+
+        .lamp-bulb {
+            width: 36px;
+            height: 36px;
+            background: #334155;
+            border-radius: 50%;
+            margin-bottom: -16px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+        }
+
+        body.lamp-on .lamp-bulb {
+            background: #ffea79;
+            box-shadow: 0 0 40px #ffe066, 0 0 70px #fbbf24, inset 0 0 12px #ffffff;
+        }
+
+        /* Light Cone Beam */
+        .light-beam {
+            position: fixed;
+            top: 150px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0.1) scaleY(0);
+            transform-origin: top center;
+            width: 1200px;
+            height: 100vh;
+            background: radial-gradient(ellipse at top, rgba(253, 224, 71, 0.32) 0%, rgba(245, 158, 11, 0.14) 40%, rgba(15, 23, 42, 0) 75%);
+            pointer-events: none;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease;
+            opacity: 0;
+            z-index: 2;
+        }
+
+        body.lamp-on .light-beam {
+            transform: translateX(-50%) scaleX(1) scaleY(1);
+            opacity: 1;
+        }
+
+        /* Lamp Pull Cord / String ("Dori") */
+        .lamp-cord-container {
+            position: absolute;
+            top: 150px;
+            right: -10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: grab;
+            pointer-events: auto;
+            user-select: none;
+            touch-action: none;
+            z-index: 110;
+        }
+
+        .lamp-cord-container:active {
+            cursor: grabbing;
+        }
+
+        .lamp-cord-string {
+            width: 3px;
+            height: 120px;
+            background: repeating-linear-gradient(180deg, #cbd5e1 0px, #cbd5e1 5px, #64748b 5px, #64748b 10px);
+            transition: height 0.15s ease-out;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        .lamp-cord-knob {
+            width: 24px;
+            height: 32px;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            border: 2px solid #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(245, 158, 11, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 800;
+            transition: transform 0.25s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+        }
+
+        .lamp-cord-knob:hover {
+            transform: scale(1.25);
+            box-shadow: 0 0 22px rgba(245, 158, 11, 0.95);
+        }
+
+        /* Tooltip next to pull cord */
+        .cord-tooltip {
+            position: absolute;
+            left: 38px;
+            top: 100px;
+            background: rgba(15, 23, 42, 0.95);
+            color: #fbbf24;
+            border: 1px solid rgba(251, 191, 36, 0.5);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+            pointer-events: none;
+            animation: bounceCordTooltip 2s infinite;
+        }
+
+        @keyframes bounceCordTooltip {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
+        }
+    </style>
+</head>
+<body class="lamp-off">
+
+    <!-- HANGING CEILING LAMP & PULL CORD ("DORI") -->
+    <div class="lamp-wrapper">
+        <div class="ceiling-mount"></div>
+        <div class="lamp-wire"></div>
+        <div class="lamp-shade">
+            <div class="lamp-bulb"></div>
+        </div>
+
+        <!-- Lamp Cord ("Dori") Pull Switch -->
+        <div id="lampCord" class="lamp-cord-container" title="Pull string to toggle light & open Admin Panel!">
+            <div id="lampString" class="lamp-cord-string"></div>
+            <div class="lamp-cord-knob">💡</div>
+            <div id="cordTooltip" class="cord-tooltip">
+                👇 Pull cord ("Lamp ki dori") down to turn ON Admin Portal!
+            </div>
+        </div>
+    </div>
+
+    <!-- Spotlight Light Beam Cone -->
+    <div class="light-beam"></div>
+
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+
+    <a href="index.html" class="back-home">
+        ← Back to Website
+    </a>
+
+    <div class="login-card">
+        
+        <!-- Header -->
+        <div class="card-header">
+            <div class="brand-badge">
+                <span class="pulse-icon"></span>
+                Secure Admin Portal
+            </div>
+            <h1>PrimeNest <span>Admin</span></h1>
+            <p>Enter your administrator credentials to continue</p>
+        </div>
+
+        <!-- Error Alert -->
+        <div id="errorAlert" class="error-banner">
+            <span>⚠️</span>
+            <span id="errorMessage">Invalid credentials. Please meet all requirements.</span>
+        </div>
+
+        <!-- Form -->
+        <form id="adminLoginForm" novalidate>
+            
+            <!-- USERNAME FIELD -->
+            <div class="form-group">
+                <label for="adminUsername">
+                    <span>Username</span>
+                    <span id="userStatusBadge" class="status-badge badge-pending">Must be 6 letters</span>
+                </label>
+                <div class="input-wrapper">
+                    <span class="input-icon">👤</span>
+                    <input 
+                        type="text" 
+                        id="adminUsername" 
+                        class="form-input" 
+                        placeholder="e.g. adminx" 
+                        autocomplete="off" 
+                        maxlength="12"
+                        required
+                    >
+                </div>
+                <ul class="rules-list">
+                    <li id="ruleUser6">
+                        <span class="rule-dot">●</span>
+                        Username must contain exactly 6 letters (A-Z or a-z)
+                    </li>
+                </ul>
+            </div>
+
+            <!-- PASSWORD FIELD -->
+            <div class="form-group">
+                <label for="adminPassword">
+                    <span>Password</span>
+                    <span id="passStatusBadge" class="status-badge badge-pending">4 Rules</span>
+                </label>
+                <div class="input-wrapper">
+                    <span class="input-icon">🔒</span>
+                    <input 
+                        type="password" 
+                        id="adminPassword" 
+                        class="form-input" 
+                        placeholder="••••••••" 
+                        autocomplete="current-password"
+                        required
+                    >
+                    <button type="button" id="togglePasswordBtn" class="toggle-password" title="Toggle visibility">
+                        👁️
+                    </button>
+                </div>
+
+                <!-- Password Rules Dynamic Checklist -->
+                <ul class="rules-list">
+                    <li id="ruleCap">
+                        <span class="rule-dot">●</span>
+                        First letter must be Capital (A-Z)
+                    </li>
+                    <li id="ruleSpecial">
+                        <span class="rule-dot">●</span>
+                        At least one special character (!@#$%^&*...)
+                    </li>
+                    <li id="ruleNum">
+                        <span class="rule-dot">●</span>
+                        At least one number (0-9)
+                    </li>
+                    <li id="ruleLen">
+                        <span class="rule-dot">●</span>
+                        Password must be 8 letters/characters
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Meta Options -->
+            <div class="form-meta">
+                <label class="remember-label">
+                    <input type="checkbox" id="rememberMe" checked>
+                    Remember session
+                </label>
+                <a href="#" class="forgot-link" onclick="alert('Demo Admin Credentials:\nUsername: adminx\nPassword: Admin@12'); return false;">Forgot Password?</a>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" id="submitBtn" class="login-btn">
+                <span>Sign In to Dashboard</span>
+                <span>→</span>
+            </button>
+
+            <!-- Quick Demo Helper -->
+            <div class="demo-credentials-box">
+                <div class="demo-info">
+                    <strong>Demo Admin Access:</strong>
+                    User: <code>adminx</code> | Pass: <code>Admin@12</code>
+                </div>
+                <button type="button" id="autofillDemo" class="fill-demo-btn">Autofill</button>
+            </div>
+
+        </form>
+
+        <!-- Success Animation Screen -->
+        <div id="successOverlay" class="success-overlay">
+            <div class="success-icon">✓</div>
+            <h2>Authentication Successful!</h2>
+            <p>Welcome back, Administrator. Redirecting to Dashboard...</p>
+            <div class="loading-spinner"></div>
+        </div>
+
+    </div>
+
+    <script>
+        // ==========================================
+        // LAMP PULL CORD ("DORI") INTERACTIVITY & PHYSICS
+        // ==========================================
+        const lampCord = document.getElementById('lampCord');
+        const lampString = document.getElementById('lampString');
+        const cordTooltip = document.getElementById('cordTooltip');
+        let isPulling = false;
+        let startY = 0;
+        let pullDistance = 0;
+
+        // Web Audio API Synthesized Mechanical Light Switch Click Sound
+        function playSwitchClickSound() {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(35, audioCtx.currentTime + 0.04);
+                gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.04);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.04);
+            } catch(e) {}
+        }
+
+        function toggleLampState() {
+            playSwitchClickSound();
+            const isCurrentlyOff = document.body.classList.contains('lamp-off');
+
+            if (isCurrentlyOff) {
+                document.body.classList.remove('lamp-off');
+                document.body.classList.add('lamp-on');
+                if (cordTooltip) {
+                    cordTooltip.innerHTML = '✨ Admin Portal Unlocked! Enter credentials or click Autofill';
+                }
+                // Auto focus username input
+                setTimeout(() => {
+                    document.getElementById('adminUsername')?.focus();
+                }, 450);
+            } else {
+                document.body.classList.remove('lamp-on');
+                document.body.classList.add('lamp-off');
+                if (cordTooltip) {
+                    cordTooltip.innerHTML = '👇 Pull cord ("Lamp ki dori") down to turn ON Admin Portal!';
+                }
+            }
+        }
+
+        // Click / Pull Trigger
+        if (lampCord) {
+            lampCord.addEventListener('click', (e) => {
+                lampString.style.height = '165px';
+                setTimeout(() => {
+                    lampString.style.height = '120px';
+                }, 200);
+                toggleLampState();
+            });
+
+            const startPull = (clientY) => {
+                isPulling = true;
+                startY = clientY;
+                lampString.style.transition = 'none';
+            };
+
+            const movePull = (clientY) => {
+                if (!isPulling) return;
+                const deltaY = clientY - startY;
+                if (deltaY > 0 && deltaY < 80) {
+                    pullDistance = deltaY;
+                    lampString.style.height = `${120 + pullDistance}px`;
+                }
+            };
+
+            const endPull = () => {
+                if (!isPulling) return;
+                isPulling = false;
+                lampString.style.transition = 'height 0.25s cubic-bezier(0.68, -0.6, 0.32, 1.6)';
+                lampString.style.height = '120px';
+                if (pullDistance > 20) {
+                    toggleLampState();
+                }
+                pullDistance = 0;
+            };
+
+            lampCord.addEventListener('mousedown', (e) => startPull(e.clientY));
+            window.addEventListener('mousemove', (e) => movePull(e.clientY));
+            window.addEventListener('mouseup', endPull);
+
+            lampCord.addEventListener('touchstart', (e) => startPull(e.touches[0].clientY));
+            window.addEventListener('touchmove', (e) => movePull(e.touches[0].clientY));
+            window.addEventListener('touchend', endPull);
+        }
+
+        // DOM Elements
+        const form = document.getElementById('adminLoginForm');
+        const usernameInput = document.getElementById('adminUsername');
+        const passwordInput = document.getElementById('adminPassword');
+        const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+        const autofillBtn = document.getElementById('autofillDemo');
+        const errorAlert = document.getElementById('errorAlert');
+        const errorMessage = document.getElementById('errorMessage');
+        const successOverlay = document.getElementById('successOverlay');
+        const userStatusBadge = document.getElementById('userStatusBadge');
+        const passStatusBadge = document.getElementById('passStatusBadge');
+
+        // Rule checklist elements
+        const ruleUser6 = document.getElementById('ruleUser6');
+        const ruleCap = document.getElementById('ruleCap');
+        const ruleSpecial = document.getElementById('ruleSpecial');
+        const ruleNum = document.getElementById('ruleNum');
+        const ruleLen = document.getElementById('ruleLen');
+
+        // Toggle Password Visibility
+        togglePasswordBtn.addEventListener('click', () => {
+            const isPassword = passwordInput.type === 'password';
+            passwordInput.type = isPassword ? 'text' : 'password';
+            togglePasswordBtn.textContent = isPassword ? '🙈' : '👁️';
+        });
+
+        // Validation Logic for Username: Must be 6 letters
+        function validateUsername(val) {
+            // Exactly 6 letters (alphabetic)
+            const isExactly6Letters = /^[a-zA-Z]{6}$/.test(val);
+            
+            if (isExactly6Letters) {
+                ruleUser6.className = 'valid';
+                ruleUser6.querySelector('.rule-dot').textContent = '✓';
+                userStatusBadge.className = 'status-badge badge-valid';
+                userStatusBadge.textContent = 'Valid (6 letters)';
+                return true;
+            } else {
+                ruleUser6.className = val.length > 0 ? 'invalid-highlight' : '';
+                ruleUser6.querySelector('.rule-dot').textContent = '●';
+                userStatusBadge.className = val.length > 0 ? 'status-badge badge-invalid' : 'status-badge badge-pending';
+                userStatusBadge.textContent = `${val.length}/6 letters`;
+                return false;
+            }
+        }
+
+        // Validation Logic for Password:
+        // 1. First letter must be Capital
+        // 2. At least one special character
+        // 3. At least one number
+        // 4. Must be 8 letters/characters (length >= 8, or exactly 8)
+        function validatePassword(val) {
+            // Rule 1: First letter is capital
+            const isFirstCap = /^[A-Z]/.test(val);
+            updateRuleItem(ruleCap, isFirstCap);
+
+            // Rule 2: At least one special character
+            const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(val);
+            updateRuleItem(ruleSpecial, hasSpecial);
+
+            // Rule 3: At least one number
+            const hasNumber = /[0-9]/.test(val);
+            updateRuleItem(ruleNum, hasNumber);
+
+            // Rule 4: Must be 8 characters (accepts 8 or 8+)
+            const isLen8 = val.length >= 8;
+            updateRuleItem(ruleLen, isLen8);
+
+            const allValid = isFirstCap && hasSpecial && hasNumber && isLen8;
+            
+            if (allValid) {
+                passStatusBadge.className = 'status-badge badge-valid';
+                passStatusBadge.textContent = 'All 4 Rules Passed ✓';
+            } else {
+                let passedCount = (isFirstCap ? 1 : 0) + (hasSpecial ? 1 : 0) + (hasNumber ? 1 : 0) + (isLen8 ? 1 : 0);
+                passStatusBadge.className = val.length > 0 ? 'status-badge badge-invalid' : 'status-badge badge-pending';
+                passStatusBadge.textContent = `${passedCount}/4 Rules Met`;
+            }
+
+            return allValid;
+        }
+
+        function updateRuleItem(element, isValid) {
+            if (isValid) {
+                element.className = 'valid';
+                element.querySelector('.rule-dot').textContent = '✓';
+            } else {
+                element.className = '';
+                element.querySelector('.rule-dot').textContent = '●';
+            }
+        }
+
+        // Live Event Listeners
+        usernameInput.addEventListener('input', () => {
+            validateUsername(usernameInput.value.trim());
+            hideError();
+        });
+
+        passwordInput.addEventListener('input', () => {
+            validatePassword(passwordInput.value);
+            hideError();
+        });
+
+        function showError(msg) {
+            errorMessage.textContent = msg;
+            errorAlert.style.display = 'flex';
+        }
+
+        function hideError() {
+            errorAlert.style.display = 'none';
+        }
+
+        // Autofill Demo Button
+        autofillBtn.addEventListener('click', () => {
+            usernameInput.value = 'adminx';
+            passwordInput.value = 'Admin@12';
+            validateUsername('adminx');
+            validatePassword('Admin@12');
+            hideError();
+        });
+
+        // Form Submit
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value;
+
+            const isUserValid = validateUsername(username);
+            const isPassValid = validatePassword(password);
+
+            if (!isUserValid) {
+                showError('Username must be exactly 6 letters (A-Z or a-z).');
+                usernameInput.focus();
+                return;
+            }
+
+            if (!isPassValid) {
+                if (!/^[A-Z]/.test(password)) {
+                    showError('Password first letter MUST be Capital (A-Z)!');
+                } else if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+                    showError('Password must contain at least one special character (!@#$%^&*...)!');
+                } else if (!/[0-9]/.test(password)) {
+                    showError('Password must contain at least one number (0-9)!');
+                } else if (password.length < 8) {
+                    showError('Password must be at least 8 characters long!');
+                }
+                passwordInput.focus();
+                return;
+            }
+
+            // Success Animation & Redirect
+            hideError();
+            successOverlay.style.display = 'flex';
+
+            // Store login session
+            localStorage.setItem('primeNest_admin_logged_in', 'true');
+            localStorage.setItem('primeNest_admin_user', username);
+
+            setTimeout(() => {
+                window.location.href = 'admin-dashboard.html';
+            }, 1400);
+        });
+    </script>
+</body>
+</html>

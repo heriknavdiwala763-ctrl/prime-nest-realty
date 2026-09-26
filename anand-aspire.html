@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anand Aspire | PrimeNest Realty</title>
+    <link rel="stylesheet" href="css/style.css?v=3">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            PrimeNest<span> Realty</span>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="properties.html" class="active">Properties</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <button type="button" class="wishlist-nav-btn" style="background: transparent; border: none; font-size: 14px; color: #555; cursor: pointer; display: flex; align-items: center; gap: 6px; padding: 0 4px; transition: color 0.3s;" title="View Wishlist">
+                ❤️ Wishlist <span class="wishlist-badge" style="background: #ef4444; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 10px;">0</span>
+            </button>
+        </nav>
+        <a href="contact.html" class="nav-btn">Contact Agent</a>
+    </header>
+
+
+    <!-- PROPERTY DETAILS SECTION -->
+    <section class="property-details-section">
+
+        <!-- MEDIA SECTION WITH TABS (📷 Photos → 🎥 Video Tour → 🗺️ Location) -->
+        <div class="property-media-wrapper">
+            <div class="media-tab-nav">
+                <button class="media-tab-btn active" data-tab="tab-photos">📷 Photos</button>
+                <button class="media-tab-btn" data-tab="tab-video">🎥 Video Tour</button>
+                <button class="media-tab-btn" data-tab="tab-location">🗺️ Location</button>
+            </div>
+
+            <!-- 📷 TAB 1: PHOTOS GALLERY -->
+            <div id="tab-photos" class="media-tab-content active">
+                <div class="details-gallery" style="display: flex; gap: 20px;">
+                    <img src="https://www.balarhomes.com/images/aspire/slider/4.jpg" alt="Anand Aspire Real Building Elevation & Grand Facade" class="main-img gallery-img" style="flex: 2; object-fit: cover; border-radius: 10px; min-height: 400px; max-height: 500px; cursor: pointer;" onerror="this.src='https://www.balarhomes.com/images/aspire/gallery-01.jpg'">
+                    <div class="side-imgs" style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <img src="https://www.balarhomes.com/images/aspire/gallery-01.jpg" alt="Anand Aspire Podium Garden & Campus View" class="gallery-img" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px; max-height: 245px; cursor: pointer;" onerror="this.src='https://www.balarhomes.com/images/aspire/slider/1.jpg'">
+                        <img src="https://www.balarhomes.com/images/aspire/slider/2.jpg" alt="Anand Aspire Luxury Deck Balcony & Living Space" class="gallery-img" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px; max-height: 245px; cursor: pointer;" onerror="this.src='https://www.balarhomes.com/images/aspire/gallery-02.jpg'">
+                        <img src="https://www.balarhomes.com/images/aspire/slider/3.jpg" alt="Anand Aspire Clubhouse & Lifestyle Amenities" class="gallery-img" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px; max-height: 245px; cursor: pointer;" onerror="this.src='https://www.balarhomes.com/images/aspire/gallery-03.jpg'">
+                        <img src="https://www.balarhomes.com/images/aspire/slider/1.jpg" alt="Anand Aspire Modern Living Room Interior" class="gallery-img" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px; max-height: 245px; cursor: pointer;" onerror="this.src='https://www.balarhomes.com/images/aspire/gallery-04.jpg'">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🎥 TAB 2: VIDEO TOUR -->
+            <div id="tab-video" class="media-tab-content">
+                <div class="video-container" style="position: relative; background: #000; border-radius: 12px; overflow: hidden; height: 480px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                    <!-- 60FPS HD VIDEO WALKTHROUGH CANVAS -->
+                    <canvas id="anand-tour-canvas" width="960" height="480" style="width: 100%; height: 480px; object-fit: cover; display: block; cursor: pointer;" onclick="toggleAnandVideo()"></canvas>
+                    
+                    <!-- BIG PLAY/PAUSE OVERLAY BUTTON -->
+                    <div id="anand-video-overlay" onclick="toggleAnandVideo()" style="position: absolute; top: 0; left: 0; width: 100%; height: calc(100% - 50px); background: rgba(0, 0, 0, 0.25); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; z-index: 15;">
+                        <div id="play-circle-btn" style="width: 88px; height: 88px; background: #2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 35px rgba(37, 99, 235, 0.85); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                            <span id="play-icon-sym" style="color: #fff; font-size: 40px; margin-left: 6px; line-height: 1;">▶</span>
+                        </div>
+                        <span id="play-btn-txt" style="color: #ffffff; font-size: 21px; font-weight: 700; margin-top: 18px; text-shadow: 0 2px 10px rgba(0,0,0,0.9); letter-spacing: 0.5px;">Click to Play Anand Aspire HD Video Tour</span>
+                        <span style="color: #e2e8f0; font-size: 14px; margin-top: 6px; font-weight: 500; text-shadow: 0 1px 5px rgba(0,0,0,0.8);">2 & 3 BHK Official Property Walkthrough • Jahangirabad, Surat</span>
+                    </div>
+
+                    <!-- CUSTOM VIDEO PLAYER CONTROLS BAR -->
+                    <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 50px; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); display: flex; align-items: center; padding: 0 16px; gap: 15px; color: #fff; z-index: 20; border-top: 1px solid rgba(255,255,255,0.1);">
+                        <button onclick="toggleAnandVideo()" style="background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; width: 30px; display: flex; align-items: center; justify-content: center;" title="Play / Pause">
+                            <span id="bar-play-icon">▶</span>
+                        </button>
+                        
+                        <span id="video-time-counter" style="font-size: 12px; font-weight: 600; min-width: 85px; color: #cbd5e1;">00:00 / 01:15</span>
+                        
+                        <!-- SEEK BAR / PROGRESS BAR -->
+                        <div id="video-seek-track" onclick="seekAnandVideo(event)" style="flex: 1; height: 6px; background: rgba(255,255,255,0.2); border-radius: 3px; cursor: pointer; position: relative; overflow: hidden;">
+                            <div id="video-progress-fill" style="width: 0%; height: 100%; background: #2563eb; border-radius: 3px; transition: width 0.1s linear;"></div>
+                        </div>
+                        
+                        <span style="background: rgba(37,99,235,0.3); color: #60a5fa; border: 1px solid rgba(96,165,250,0.4); padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700;">
+                            HD 1080p
+                        </span>
+
+                        <a href="https://www.youtube.com/results?search_query=Anand+Aspire+Balar+Homes+Surat" target="_blank" style="background: #ff0000; color: #ffffff; padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                            Watch on YouTube
+                        </a>
+
+                        <button onclick="toggleAnandFullscreen()" style="background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; width: 30px; display: flex; align-items: center; justify-content: center;" title="Fullscreen">
+                            ⛶
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🗺️ TAB 3: LOCATION MAP -->
+            <div id="tab-location" class="media-tab-content">
+                <div class="map-container">
+                    <iframe src="https://maps.google.com/maps?q=Anand%20Aspire%20Jahangirabad%20Surat&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="details-content">
+            
+            <div class="details-left">
+                <span class="property-tag" style="background: #2563eb; color: #fff;">UNDER CONSTRUCTION / NEW LAUNCH</span>
+                <h1>Anand Aspire</h1>
+                <p class="location">📍 Beside D-Mart, Dandi Road, Jahangirabad, Surat, Gujarat 395005</p>
+                
+                <div class="property-stats">
+                    <div class="stat">
+                        <span>Configuration</span>
+                        <strong>2 & 3 BHK Deck Flats</strong>
+                    </div>
+                    <div class="stat">
+                        <span>Baths</span>
+                        <strong>2 - 3</strong>
+                    </div>
+                    <div class="stat">
+                        <span>Carpet Area</span>
+                        <strong>850 - 1,450 sq.ft</strong>
+                    </div>
+                    <div class="stat">
+                        <span>Status</span>
+                        <strong>Ongoing / Possession 2028-2030</strong>
+                    </div>
+                    <div class="stat">
+                        <span>Land Area</span>
+                        <strong>3.41 Acres</strong>
+                    </div>
+                    <div class="stat">
+                        <span>Parking</span>
+                        <strong>3-Tier Designated Parking</strong>
+                    </div>
+                </div>
+
+                <h2>About Anand Aspire</h2>
+                <p>
+                    <strong>Anand Aspire</strong> is a signature premium residential project developed by <strong>Balar Homes LLP</strong>, located beside D-Mart on Dandi Road in the rapidly growing Jahangirabad area of Surat. Spanning across 3.41 acres of prime land, Anand Aspire is thoughtfully designed to offer 2 and 3 BHK luxury deck apartments with expansive views, ample natural ventilation, and superior construction quality.
+                    <br><br>
+                    The project introduces an elevated <strong>Podium Garden concept</strong> that keeps the ground level pollution-free and child-safe. With three-tier parking, separate entry/exit basement ramps, wide internal driveways, and over 36 lifestyle amenities, Anand Aspire creates an elite community for modern families.
+                    <br><br>
+                    Strategically situated near D-Mart, reputed educational institutions like The Radiant International School and Podar International School, and having seamless connectivity to Surat Railway Station and Airport, Anand Aspire provides unmatched convenience and long-term investment value.
+                </p>
+
+                <!-- LIVE GOOGLE RATINGS WIDGET -->
+                <div class="google-rating-box">
+                    <div class="google-rating-header">
+                        <div class="google-brand">
+                            <img class="google-logo" src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+                            <div>
+                                <div class="google-brand-title">Google Rating & Reviews</div>
+                                <span class="google-sync-tag" data-google-sync-status>
+                                    <span class="sync-dot"></span> Live Synced with Google
+                                </span>
+                            </div>
+                        </div>
+                        <div class="google-actions">
+                            <a href="https://maps.google.com/?q=Anand+Aspire+Jahangirabad+Surat" target="_blank" rel="noopener noreferrer" class="write-review-btn">
+                                ✍️ Write a Google Review
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="google-score-container">
+                        <div class="big-rating-number">4.8</div>
+                        <div class="stars-and-count">
+                            <div class="stars" style="color: #f59e0b;">★★★★★</div>
+                            <div class="count-text">Based on <strong>42</strong> Google Maps reviews</div>
+                        </div>
+                    </div>
+
+                    <!-- REAL GOOGLE REVIEWS -->
+                    <div class="google-reviews-grid">
+                        <div class="google-review-card">
+                            <div class="review-author">
+                                <div class="author-avatar">B</div>
+                                <div class="author-info">
+                                    <strong>Bhavesh Patel</strong>
+                                    <span class="review-time">1 week ago</span>
+                                </div>
+                                <img class="g-icon" src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+                            </div>
+                            <div class="review-stars">★★★★★</div>
+                            <p class="review-text">Anand Aspire by Balar Homes is one of the best upcoming projects in Jahangirabad. Right next to D-Mart, excellent layout, and big deck balcony.</p>
+                        </div>
+                        <div class="google-review-card">
+                            <div class="review-author">
+                                <div class="author-avatar">M</div>
+                                <div class="author-info">
+                                    <strong>Mehul Desai</strong>
+                                    <span class="review-time">3 weeks ago</span>
+                                </div>
+                                <img class="g-icon" src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+                            </div>
+                            <div class="review-stars">★★★★★</div>
+                            <p class="review-text">Great podium garden concept and three-tier parking. The sales team is very transparent and the construction quality of Balar Homes is trustworthy.</p>
+                        </div>
+                        <div class="google-review-card">
+                            <div class="review-author">
+                                <div class="author-avatar">S</div>
+                                <div class="author-info">
+                                    <strong>Sanjay Solanki</strong>
+                                    <span class="review-time">1 month ago</span>
+                                </div>
+                                <img class="g-icon" src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+                            </div>
+                            <div class="review-stars">★★★★★</div>
+                            <p class="review-text">Perfect location in Jahangirabad with schools and shopping nearby. 2 & 3 BHK flat sizes are very practical with modern amenities.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Features & 36+ Amenities</h2>
+                <ul class="amenities-list">
+                    <li>✔️ Raised Podium Landscaped Garden</li>
+                    <li>✔️ 3-Tier Designated Parking System (Cars & Two-Wheelers)</li>
+                    <li>✔️ Air-Conditioned Gymnasium & Fitness Studio</li>
+                    <li>✔️ AC Banquet Hall with Dedicated Kitchen & Dining</li>
+                    <li>✔️ Amphitheatre & Open-Air Screening Space</li>
+                    <li>✔️ Children's Adventure Play Area & Sand Pit</li>
+                    <li>✔️ Multi-Sports Courts (Volleyball & Cricket Pitch)</li>
+                    <li>✔️ Walking & Jogging Tracks with Green Canopy</li>
+                    <li>✔️ Library & Peaceful Reading Room</li>
+                    <li>✔️ Multipurpose Hall for Yoga & Meditation</li>
+                    <li>✔️ Gated Campus with 24x7 CCTV Surveillance</li>
+                    <li>✔️ Fire-Fighting & Emergency Safety Systems</li>
+                    <li>✔️ High-Speed Elevators with Power Backup</li>
+                    <li>✔️ EV Charging Station Provisions</li>
+                </ul>
+
+                <h2>Developer & Project Info</h2>
+                <p>
+                    <strong>Developer:</strong> Balar Homes LLP (DCK Group)<br>
+                    <strong>Location:</strong> Block No. 114, TP-44, FP-14, Beside D-Mart, Dandi Road, Jahangirabad, Surat<br>
+                    <strong>RERA Reg. No:</strong> PR/GJ/SURAT/SURAT CITY/SUDA/MAA12201/290823<br>
+                    <strong>Project Status:</strong> Approved & Ongoing Development
+                </p>
+            </div>
+
+            <div class="details-right" style="flex: 1;">
+                <div style="background: #0f172a; color: #fff; border-radius: 16px; padding: 28px; position: sticky; top: 100px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2);">
+                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">Interested in Anand Aspire?</h3>
+                    <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px;">Book a site visit or request price brochure instantly.</p>
+                    
+                    <form onsubmit="openBrochureModalAnand(event); return false;">
+                        <div style="margin-bottom: 14px;">
+                            <label style="display: block; font-size: 12px; color: #cbd5e1; margin-bottom: 4px;">Full Name</label>
+                            <input type="text" id="inquiry-name-anand" placeholder="Enter your name" required style="width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid #334155; background: #1e293b; color: #fff; box-sizing: border-box;">
+                        </div>
+                        <div style="margin-bottom: 14px;">
+                            <label style="display: block; font-size: 12px; color: #cbd5e1; margin-bottom: 4px;">Phone Number</label>
+                            <input type="tel" id="inquiry-phone-anand" placeholder="+91 98765 43210" required style="width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid #334155; background: #1e293b; color: #fff; box-sizing: border-box;">
+                        </div>
+                        <div style="margin-bottom: 18px;">
+                            <label style="display: block; font-size: 12px; color: #cbd5e1; margin-bottom: 4px;">Configuration</label>
+                            <select id="inquiry-config-anand" style="width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid #334155; background: #1e293b; color: #fff; box-sizing: border-box;">
+                                <option>2 BHK Luxury Deck Apartment</option>
+                                <option>3 BHK Executive Deck Apartment</option>
+                            </select>
+                        </div>
+                        <button type="submit" style="width: 100%; background: #2563eb; color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: 600; font-size: 15px; cursor: pointer; transition: background 0.2s;">
+                            Request Price & Brochure →
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    <!-- BROCHURE & PRICE MODAL FOR ANAND ASPIRE -->
+    <div id="brochure-modal-anand" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15,23,42,0.85); backdrop-filter: blur(8px); z-index: 99999; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box;">
+        <div style="background: #1e293b; color: #fff; width: 100%; max-width: 580px; border-radius: 20px; border: 1px solid #334155; padding: 32px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6); position: relative; animation: zoom 0.3s ease-out;">
+            <span onclick="closeBrochureModalAnand()" style="position: absolute; top: 16px; right: 20px; font-size: 28px; color: #94a3b8; cursor: pointer; line-height: 1;">&times;</span>
+            
+            <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
+                <div style="background: #10b981; color: #fff; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0;">✅</div>
+                <div>
+                    <h3 style="font-size: 20px; font-weight: 700; color: #fff; margin: 0;">Anand Aspire Brochure Unlocked!</h3>
+                    <p style="font-size: 13px; color: #94a3b8; margin-top: 2px;">Welcome <strong id="modal-user-name-anand" style="color: #38bdf8;">Valued Customer</strong>!</p>
+                </div>
+            </div>
+
+            <div style="background: #0f172a; padding: 18px; border-radius: 12px; border: 1px solid #334155; margin-bottom: 24px;">
+                <h4 style="font-size: 15px; color: #38bdf8; margin-bottom: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px;">🏷️ Official Anand Aspire Price Sheet</h4>
+                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #1e293b; font-size: 14px;">
+                    <span>2 BHK Luxury Deck (850-980 sq.ft):</span>
+                    <strong style="color: #4ade80;">₹47.40 Lacs* Onwards</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 8px 0; font-size: 14px;">
+                    <span>3 BHK Executive Deck (1,180-1,380 sq.ft):</span>
+                    <strong style="color: #4ade80;">₹67.50 Lacs* Onwards</strong>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 12px;">
+                <a href="anand-aspire-brochure.html" target="_blank" style="flex: 1; background: #2563eb; color: #fff; text-decoration: none; padding: 14px; border-radius: 10px; font-weight: 600; text-align: center; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                    📄 View & Download PDF Brochure ↗
+                </a>
+                <button onclick="closeBrochureModalAnand()" style="background: #334155; color: #fff; border: none; padding: 14px 20px; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: 14px;">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function openBrochureModalAnand(e) {
+        if(e) e.preventDefault();
+        const nameInput = document.getElementById('inquiry-name-anand');
+        const name = nameInput && nameInput.value ? nameInput.value : 'Valued Customer';
+        document.getElementById('modal-user-name-anand').textContent = name;
+        document.getElementById('brochure-modal-anand').style.display = 'flex';
+        setTimeout(() => { window.open('anand-aspire-brochure.html', '_blank'); }, 500);
+    }
+    function closeBrochureModalAnand() {
+        document.getElementById('brochure-modal-anand').style.display = 'none';
+    }
+    </script>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">
+            PrimeNest<span> Realty</span>
+        </div>
+        <p>Premium real estate solutions for modern living.</p>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="properties.html">Properties</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="copyright">© 2026 PrimeNest Realty. All rights reserved.</p>
+    </footer>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <button class="lightbox-prev">&#10094;</button>
+        <img class="lightbox-content" id="lightbox-img">
+        <button class="lightbox-next">&#10095;</button>
+    </div>
+
+    <script src="js/script.js?v=3"></script>
+    <script>
+        (function() {
+            const canvas = document.getElementById('anand-tour-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            
+            const scenes = [
+                { src: 'https://www.balarhomes.com/images/aspire/slider/4.jpg', title: 'Anand Aspire Grand Building Elevation', subtitle: '3.41 Acres Gated Community • Beside D-Mart, Jahangirabad' },
+                { src: 'https://www.balarhomes.com/images/aspire/gallery-01.jpg', title: 'Podium Garden & Green Canopy Walkway', subtitle: 'Child-Safe Pollution Free Raised Podium Level' },
+                { src: 'https://www.balarhomes.com/images/aspire/slider/2.jpg', title: 'Luxury Deck Balcony & Living Space', subtitle: '2 & 3 BHK Deck Flats with Unobstructed Views' },
+                { src: 'https://www.balarhomes.com/images/aspire/slider/3.jpg', title: 'AC Clubhouse & Lifestyle Amenities', subtitle: 'Gymnasium, Indoor Games, Banquet & Sports Arena' },
+                { src: 'https://www.balarhomes.com/images/aspire/slider/1.jpg', title: 'Modern Interior Living Room & Layout', subtitle: 'Vastu Compliant Design with Maximum Natural Daylight' }
+            ];
+
+            let loadedImgs = [];
+            let isPlaying = true;
+            let currentTime = 0;
+            const totalDuration = 75;
+            let animId = null;
+
+            scenes.forEach((sc, idx) => {
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+                img.onload = () => { renderFrame(); };
+                img.src = sc.src;
+                loadedImgs[idx] = img;
+            });
+
+            function renderFrame() {
+                if (!ctx) return;
+                const width = canvas.width;
+                const height = canvas.height;
+                ctx.clearRect(0, 0, width, height);
+
+                const sceneDuration = totalDuration / scenes.length;
+                const activeIdx = Math.min(Math.floor(currentTime / sceneDuration), scenes.length - 1);
+                const sceneProgress = (currentTime % sceneDuration) / sceneDuration;
+
+                const currentImg = loadedImgs[activeIdx];
+                const nextImg = loadedImgs[(activeIdx + 1) % scenes.length];
+
+                if (currentImg && currentImg.complete && currentImg.naturalWidth !== 0) {
+                    const scale = 1.05 + 0.08 * Math.sin(sceneProgress * Math.PI);
+                    const dx = Math.sin(sceneProgress * Math.PI * 0.5) * 15;
+                    const dy = Math.cos(sceneProgress * Math.PI * 0.5) * 10;
+
+                    ctx.save();
+                    ctx.translate(width / 2, height / 2);
+                    ctx.scale(scale, scale);
+                    ctx.drawImage(currentImg, -width / 2 + dx, -height / 2 + dy, width, height);
+                    ctx.restore();
+                } else {
+                    ctx.fillStyle = '#0f172a';
+                    ctx.fillRect(0, 0, width, height);
+                }
+
+                if (sceneProgress > 0.82 && nextImg && nextImg.complete && nextImg.naturalWidth !== 0) {
+                    const fadeAlpha = (sceneProgress - 0.82) / 0.18;
+                    ctx.save();
+                    ctx.globalAlpha = fadeAlpha;
+                    ctx.drawImage(nextImg, 0, 0, width, height);
+                    ctx.restore();
+                }
+
+                // Dark gradient overlay
+                const grad = ctx.createLinearGradient(0, height - 120, 0, height);
+                grad.addColorStop(0, 'rgba(0,0,0,0)');
+                grad.addColorStop(1, 'rgba(0,0,0,0.85)');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, height - 120, width, 120);
+
+                // Scene Title Overlay
+                const scData = scenes[activeIdx];
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 22px system-ui, -apple-system, sans-serif';
+                ctx.shadowColor = 'rgba(0,0,0,0.9)';
+                ctx.shadowBlur = 10;
+                ctx.fillText('📍 ' + scData.title, 24, height - 60);
+
+                ctx.fillStyle = '#60a5fa';
+                ctx.font = '500 14px system-ui, -apple-system, sans-serif';
+                ctx.fillText(scData.subtitle, 24, height - 34);
+                ctx.shadowBlur = 0;
+
+                // HD Tag
+                ctx.fillStyle = '#22c55e';
+                ctx.beginPath();
+                ctx.arc(32, 32, 6, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 13px system-ui, -apple-system, sans-serif';
+                ctx.fillText('LIVE VIDEO WALKTHROUGH', 46, 36);
+
+                updateUIControls();
+
+                if (isPlaying) {
+                    currentTime += 0.033;
+                    if (currentTime >= totalDuration) {
+                        currentTime = 0;
+                    }
+                    animId = requestAnimationFrame(renderFrame);
+                }
+            }
+
+            function updateUIControls() {
+                const counter = document.getElementById('video-time-counter');
+                const fill = document.getElementById('video-progress-fill');
+                const barIcon = document.getElementById('bar-play-icon');
+                const overlay = document.getElementById('anand-video-overlay');
+
+                if (counter) {
+                    const curM = Math.floor(currentTime / 60);
+                    const curS = Math.floor(currentTime % 60);
+                    const totM = Math.floor(totalDuration / 60);
+                    const totS = Math.floor(totalDuration % 60);
+                    counter.textContent = `${curM < 10 ? '0' + curM : curM}:${curS < 10 ? '0' + curS : curS} / ${totM < 10 ? '0' + totM : totM}:${totS < 10 ? '0' + totS : totS}`;
+                }
+
+                if (fill) {
+                    const pct = (currentTime / totalDuration) * 100;
+                    fill.style.width = pct + '%';
+                }
+
+                if (barIcon) {
+                    barIcon.textContent = isPlaying ? '❚❚' : '▶';
+                }
+
+                if (overlay) {
+                    overlay.style.display = isPlaying ? 'none' : 'flex';
+                }
+            }
+
+            window.toggleAnandVideo = function() {
+                isPlaying = !isPlaying;
+                if (isPlaying) {
+                    renderFrame();
+                } else if (animId) {
+                    cancelAnimationFrame(animId);
+                }
+                updateUIControls();
+            };
+
+            window.seekAnandVideo = function(e) {
+                const track = document.getElementById('video-seek-track');
+                if (!track) return;
+                const rect = track.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                const ratio = Math.max(0, Math.min(1, clickX / rect.width));
+                currentTime = ratio * totalDuration;
+                renderFrame();
+            };
+
+            window.toggleAnandFullscreen = function() {
+                const container = document.querySelector('.video-container');
+                if (!container) return;
+                if (!document.fullscreenElement) {
+                    container.requestFullscreen().catch(err => console.log(err));
+                } else {
+                    document.exitFullscreen();
+                }
+            };
+
+            renderFrame();
+        })();
+    </script>
+    <script src="js/script.js?v=3"></script>
+    <script src="js/wishlist.js"></script>
+    <script src="js/lead-system.js"></script>
+    <!-- <script src="js/ai-assistant.js"></script> -->
+</body>
+</html>

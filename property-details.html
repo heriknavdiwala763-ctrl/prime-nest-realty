@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Details | PrimeNest Realty</title>
+    <link rel="stylesheet" href="css/style.css?v=2">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            PrimeNest<span> Realty</span>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="properties.html" class="active">Properties</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <a href="contact.html" class="nav-btn">Contact Agent</a>
+    </header>
+
+
+    <!-- PROPERTY DETAILS SECTION -->
+    <section class="property-details-section">
+
+        <!-- MEDIA SECTION WITH TABS (📷 Photos → 🎥 Video Tour → 🗺️ Location) -->
+        <div class="property-media-wrapper">
+            <div class="media-tab-nav">
+                <button class="media-tab-btn active" data-tab="tab-photos">📷 Photos</button>
+                <button class="media-tab-btn" data-tab="tab-video">🎥 Video Tour</button>
+                <button class="media-tab-btn" data-tab="tab-location">🗺️ Location</button>
+            </div>
+
+            <!-- 📷 TAB 1: PHOTOS GALLERY -->
+            <div id="tab-photos" class="media-tab-content active">
+                <div class="details-gallery" style="display: flex; gap: 20px;">
+                    <img src="images/media_1789368581313.png" alt="Main Property View" class="main-img gallery-img" style="flex: 2; object-fit: cover; border-radius: 10px; min-height: 400px; max-height: 500px; cursor: pointer;">
+                    <div class="side-imgs" style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <img src="images/media_1789368603161.png" alt="Rameshwaram Ivaan Entrance" class="gallery-img" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px; max-height: 245px; cursor: pointer;">
+                        <img src="images/media_1789368598690.png" alt="Rameshwaram Ivaan Evening View" class="gallery-img" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px; max-height: 245px; cursor: pointer;">
+                        <img src="images/media_1789368594517.png" alt="Kids Play Area" class="gallery-img" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px; max-height: 245px; cursor: pointer;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🎥 TAB 2: VIDEO TOUR -->
+            <div id="tab-video" class="media-tab-content">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/2_Y5E0r4O4w?rel=0" title="Rameshwaram Ivaan Video Tour" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width: 100%; height: 480px; border: 0;"></iframe>
+                </div>
+            </div>
+
+            <!-- 🗺️ TAB 3: LOCATION MAP -->
+            <div id="tab-location" class="media-tab-content">
+                <div class="map-container">
+                    <iframe src="https://maps.google.com/maps?q=Rameshwaram%20Ivaan%20Palanpur%20Surat&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="details-content">
+            
+            <div class="details-left">
+                <span class="property-tag">FOR SALE</span>
+                <h1>Rameshwaram Ivaan</h1>
+                <p class="location">📍 Palanpur, Surat, Gujarat</p>
+                
+                <div class="property-stats">
+                    <div class="stat">
+                        <span>Beds</span>
+                        <strong>2, 3 BHK</strong>
+                    </div>
+                    <div class="stat">
+                        <span>Baths</span>
+                        <strong>2</strong>
+                    </div>
+                    <div class="stat">
+                        <span>Area</span>
+                        <strong>716 - 1195 sq.ft</strong>
+                    </div>
+                    <div class="stat">
+                        <span>Status</span>
+                        <strong>Under Construction</strong>
+                    </div>
+                </div>
+
+                <h2>Description</h2>
+                <p>
+                    Rameshwaram Ivaan is a premium residential complex in Palanpur, Surat that provides all the comforts of modern living. Developed by the renowned Rameshwaram Group, this project offers elegant 2 and 3 BHK apartments tailored for luxury and convenience.
+                    <br><br>
+                    With over 200 units on offer across a vast 3.2-acre spread, the property boasts state-of-the-art facilities, lush green landscaping, and excellent connectivity to major parts of the city. Experience a vibrant community lifestyle in a peaceful and secure environment.
+                </p>
+
+                <h2>Features & Amenities</h2>
+                <ul class="amenities-list">
+                    <li>✔️ Clubhouse</li>
+                    <li>✔️ Landscape Garden</li>
+                    <li>✔️ Children's Play Area</li>
+                    <li>✔️ 24x7 Security</li>
+                    <li>✔️ Gymnasium</li>
+                    <li>✔️ Covered Parking</li>
+                    <li>✔️ Indoor Games</li>
+                    <li>✔️ Jogging Track</li>
+                </ul>
+            </div>
+
+            <div class="details-right">
+                <div class="price-card">
+                    <p>Asking Price</p>
+                    <h3>₹3 Cr</h3>
+                    <button class="primary-btn full-width">Schedule a Tour</button>
+                    <button class="secondary-btn full-width mt-10">Request Info</button>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">
+            PrimeNest<span> Realty</span>
+        </div>
+        <p>Premium real estate solutions for modern living.</p>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="properties.html">Properties</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="copyright">© 2026 PrimeNest Realty. All rights reserved.</p>
+    </footer>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <button class="lightbox-prev">&#10094;</button>
+        <img class="lightbox-content" id="lightbox-img">
+        <button class="lightbox-next">&#10095;</button>
+    </div>
+
+    <script src="js/script.js?v=3"></script>
+</body>
+</html>
